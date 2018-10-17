@@ -21,7 +21,11 @@ const Card = styled.form(
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    minWidth: '50%',
+    width: `100%`,
+    margin: `0 auto`,
+    '@media only screen and (min-width: 768px)': {
+      width: '50%'
+    }
   },
   ({ theme }) => ({
     backgroundColor: theme.bgLight,
@@ -162,6 +166,7 @@ class NewMessage extends Component {
                   <Textarea
                     id="body"
                     css={styles.input}
+                    rows={5}
                     value={body}
                     onChange={this.handleChange}
                   />

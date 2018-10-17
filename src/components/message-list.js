@@ -32,7 +32,7 @@ function MessageList({ className, threads }) {
               id: thread.id,
             }}
           >
-            <Message showAction={true} {...message} />
+            <Message showAction={true} showTo={false} {...message} />
           </Link>
         </Item>
         )

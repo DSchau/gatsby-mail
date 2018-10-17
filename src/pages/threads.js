@@ -48,6 +48,7 @@ function Threads({ location }) {
                             data
                           }
                         }
+                        date
                         subject
                         from
                         to
