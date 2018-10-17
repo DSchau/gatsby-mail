@@ -1,0 +1,53 @@
+{
+  "name": "gatsby-starter-default",
+  "description": "Gatsby default starter",
+  "version": "1.0.0",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "dependencies": {
+    "apollo-boost": "^0.1.16",
+    "autosize": "^4.0.2",
+    "emotion": "^9.2.12",
+    "emotion-server": "^9.2.12",
+    "emotion-theming": "^9.2.9",
+    "gatsby": "^2.0.19",
+    "gatsby-plugin-emotion": "^2.0.5",
+    "gatsby-plugin-layout": "^1.0.3",
+    "gatsby-plugin-manifest": "^2.0.5",
+    "gatsby-plugin-offline": "^2.0.5",
+    "gatsby-plugin-react-helmet": "^3.0.0",
+    "gatsby-plugin-typography": "^2.2.0",
+    "gatsby-source-filesystem": "^2.0.4",
+    "gatsby-source-graphql": "^2.0.4",
+    "gatsby-transformer-yaml": "^2.1.3",
+    "minireset.css": "^0.0.3",
+    "onegraph-auth": "^0.2.16",
+    "react": "^16.5.1",
+    "react-apollo": "^2.2.4",
+    "react-dom": "^16.5.1",
+    "react-emotion": "^9.2.12",
+    "react-helmet": "^5.2.0",
+    "react-icons": "^3.2.1",
+    "react-typography": "^0.16.13",
+    "typography": "^0.16.17"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write '**/*.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "dotenv": "^6.1.0",
+    "husky": "^1.1.2",
+    "prettier": "^1.14.3",
+    "pretty-quick": "^1.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  }
+}
