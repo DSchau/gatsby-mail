@@ -5,6 +5,8 @@ import { Link } from 'gatsby'
 import styled from 'react-emotion'
 import { FaChevronLeft } from 'react-icons/fa'
 
+import Message from '../components/message'
+
 const StyledLink = styled(Link)(({ theme }) => ({
   display: 'inline-block',
   margin: '0.25rem 0',
@@ -25,39 +27,51 @@ function Wrapper({ children, id }) {
   )
 }
 
-function Messages({ location }) {
+function Threads({ location }) {
   const { id } = location.state
 
   return (
     <Wrapper id={id}>
       <Query
         query={gql`
-          query GetMessageById($messageId: String!) {
+          query GetMessageThread($threadId: String!) {
             google {
               gmail {
-                message(id: $messageId) {
-                  payload {
-                    date
-                    to
-                    from
-                    subject
+                thread(id: $threadId) {
+                  expanded {
+                    messages {
+                      id
+                      payload {
+                        parts {
+                          mimeType
+                          body {
+                            data
+                          }
+                        }
+                        subject
+                        from
+                        to
+                      }
+                    }
                   }
                 }
               }
             }
           }
         `}
-        variables={{ messageId: id }}
-        children={({ loading, error, data }) => {
-          const message = data && data.google ? data.google.gmail.message : null
+        variables={{ threadId: id }}
+        children={({ loading, data }) => {
+          const messages = data && data.google ? data.google.gmail.thread.expanded.messages : null
           return (
             <>
               {loading && <p>Fetching message details&hellip;</p>}
-              {message && (
+              {messages && (
                 <>
-                  <h1>{message.payload.subject}</h1>
-                  <h2>TO: {message.payload.to}</h2>
-                  <h2>FROM: {message.payload.from}</h2>
+                  {
+                    messages.map(message => (
+                      <Message key={message.id} {...message} />
+                    ))
+                  }
                 </>
               )}
             </>
@@ -68,4 +82,4 @@ function Messages({ location }) {
   )
 }
 
-export default Messages
+export default Threads
