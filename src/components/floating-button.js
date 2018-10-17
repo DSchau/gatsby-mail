@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 let Link = styled.button(({ theme }) => ({
   backgroundColor: theme.accent,
-  color: theme.bg,
+  color: `white`,
   padding: '1rem',
   minHeight: 48,
   minWidth: 48,

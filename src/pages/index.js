@@ -29,9 +29,6 @@ const IndexPage = () => (
                   messages {
                     id
                     payload {
-                      body {
-                        data
-                      }
                       from
                       to
                       subject

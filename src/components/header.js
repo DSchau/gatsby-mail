@@ -11,7 +11,7 @@ const Container = styled.header(({ theme }) => ({
   justifyContent: `space-between`,
   backgroundColor: theme.accent,
   color: theme.bg,
-  padding: `1rem 2rem`,
+  padding: `1rem 0.5rem`,
 }))
 
 const StyledLink = styled(Link)(({ theme }) => ({
@@ -28,7 +28,7 @@ const IconButton = styled.button(
     fontSize: 24,
   },
   props => ({
-    color: props.theme.bg,
+    color: props.theme.inverted.bg,
   })
 )
 
