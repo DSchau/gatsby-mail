@@ -20,6 +20,7 @@ const Container = styled.footer(
 
 const Message = styled.p({
   fontSize: 14,
+  margin: 0
 })
 
 const Heart = styled(FaHeart)({

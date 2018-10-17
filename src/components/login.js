@@ -7,8 +7,8 @@ const Container = styled.div(
   {
     display: `flex`,
   },
-  props => ({
-    color: props.theme.color,
+  ({ theme }) => ({
+    color: theme.color,
   })
 )
 
