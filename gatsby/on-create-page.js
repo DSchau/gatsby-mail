@@ -1,8 +1,8 @@
 module.exports = function onCreatePage({ page, actions }) {
   const { createPage } = actions
 
-  if (page.path.startsWith(`/messages`)) {
-    page.matchPath = `/messages/:messageId`
+  if (page.path.startsWith(`/threads`)) {
+    page.matchPath = `/threads/:threadId`
     createPage(page)
   }
 }

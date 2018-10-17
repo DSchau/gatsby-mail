@@ -19,19 +19,24 @@ const BottomRight = styled.div({
 const IndexPage = () => (
   <Query
     query={gql`
-      query {
+      query GetMessages {
         google {
           gmail {
-            messages(maxResults: 50) {
-              messages {
+            queryThreads(maxResults: 25) {
+              threads {
                 id
-                payload {
-                  body {
-                    data
+                expanded {
+                  messages {
+                    id
+                    payload {
+                      body {
+                        data
+                      }
+                      from
+                      to
+                      subject
+                    }
                   }
-                  from
-                  to
-                  subject
                 }
               }
             }
@@ -45,7 +50,7 @@ const IndexPage = () => (
         {data.google && (
           <MessageList
             css={{ paddingBottom: 48 }}
-            messages={data.google.gmail.messages.messages}
+            threads={data.google.gmail.queryThreads.threads}
           />
         )}
         <BottomRight>

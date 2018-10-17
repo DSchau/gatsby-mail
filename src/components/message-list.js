@@ -18,33 +18,47 @@ const Item = styled.li({
   padding: 0,
 })
 
-function MessageList({ className, messages }) {
+function MessageList({ className, threads }) {
   return (
     <Container className={className}>
-      {messages.map(message => (
-        <Item key={message.id}>
+      {threads.map(thread => {
+        const message = thread.expanded.messages[0];
+        return (
+          <Item key={thread.id}>
           <Link
-            to={`/messages/${message.id}`}
+            to={`/threads/${thread.id}`}
             css={{ textDecoration: `none` }}
             state={{
-              id: message.id,
+              id: thread.id,
             }}
           >
-            <Message {...message} />
+            <Message showAction={true} {...message} />
           </Link>
         </Item>
-      ))}
+        )
+      })}
     </Container>
   )
 }
 
 MessageList.propTypes = {
   className: PropTypes.string,
-  messages: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
+  threads: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    expanded: PropTypes.shape({
+      messages: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        payload: PropTypes.shape({
+          body: PropTypes.shape({
+            data: PropTypes.string
+          }),
+          from: PropTypes.string,
+          subject: PropTypes.string,
+          to: PropTypes.string
+        })
+      }))
     })
-  ),
+  }))
 }
 
 export default MessageList
