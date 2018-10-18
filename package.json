@@ -18,9 +18,11 @@
     "gatsby-plugin-typography": "^2.2.0",
     "gatsby-source-filesystem": "^2.0.4",
     "gatsby-source-graphql": "^2.0.4",
+    "gatsby-transformer-remark": "^2.1.7",
     "gatsby-transformer-yaml": "^2.1.3",
-    "minireset.css": "^0.0.3",
+    "normalize.css": "^8.0.0",
     "onegraph-auth": "^0.2.16",
+    "query-string": "^6.2.0",
     "react": "^16.5.1",
     "react-apollo": "^2.2.4",
     "react-dom": "^16.5.1",
@@ -28,7 +30,8 @@
     "react-helmet": "^5.2.0",
     "react-icons": "^3.2.1",
     "react-typography": "^0.16.13",
-    "typography": "^0.16.17"
+    "typography": "^0.16.17",
+    "typography-theme-grand-view": "^0.15.10"
   },
   "keywords": [
     "gatsby"

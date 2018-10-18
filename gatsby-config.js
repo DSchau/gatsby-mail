@@ -3,6 +3,7 @@ const path = require('path')
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Mail',
+    unauthenticatedRoutes: [`/privacy-policy/`, `/terms-of-service/`],
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -24,16 +25,17 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-typography',
       options: {
-        pathToConfigModule: 'src/util/typography'
-      }
+        pathToConfigModule: 'src/util/typography',
+      },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'content',
-        path: path.join(__dirname, 'content')
-      }
+        path: path.join(__dirname, 'content'),
+      },
     },
-    'gatsby-transformer-yaml'
+    'gatsby-transformer-remark',
+    'gatsby-transformer-yaml',
   ],
 }

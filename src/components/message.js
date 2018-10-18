@@ -17,13 +17,18 @@ const Container = styled.div(
   })
 )
 
-const Details = styled.div({
-  margin: '0.5rem 0',
-}, ({ showAction }) => ({
-  ...(showAction ? {
-    paddingRight: 24
-  } : {})
-}))
+const Details = styled.div(
+  {
+    margin: '0.5rem 0',
+  },
+  ({ showAction }) => ({
+    ...(showAction
+      ? {
+          paddingRight: 24,
+        }
+      : {}),
+  })
+)
 
 const To = styled.h2({
   margin: '0.25rem 0',
@@ -32,7 +37,7 @@ const To = styled.h2({
   fontWeight: 'normal',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
-  textOverflow: 'ellipsis'
+  textOverflow: 'ellipsis',
 })
 
 const From = styled(To)()
@@ -46,14 +51,14 @@ const Subject = styled(To)({
 
 const Content = styled.div({
   lineHeight: 1.5,
-  margin: '1rem 0'
+  margin: '1rem 0',
 })
 
 const Action = styled.div({
   position: `absolute`,
   top: '50%',
   right: 8,
-  transform: 'translateY(-50%)'
+  transform: 'translateY(-50%)',
 })
 
 function Message({ className, showAction, showTo, payload }) {
@@ -68,11 +73,14 @@ function Message({ className, showAction, showTo, payload }) {
       </Details>
       {parts && (
         <>
-          {
-            parts.filter(part => part.mimeType === 'text/html').map((part, index) => (
-              <Content key={index} dangerouslySetInnerHTML={{ __html: decodePayload(part.body) }} />
-            ))
-          }
+          {parts
+            .filter(part => part.mimeType === 'text/html')
+            .map((part, index) => (
+              <Content
+                key={index}
+                dangerouslySetInnerHTML={{ __html: decodePayload(part.body) }}
+              />
+            ))}
         </>
       )}
       {showAction && (
@@ -91,15 +99,17 @@ Message.propTypes = {
   payload: PropTypes.shape({
     date: PropTypes.string,
     from: PropTypes.string,
-    parts: PropTypes.arrayOf(PropTypes.shape({
-      body: PropTypes.shape({
-        data: PropTypes.string
-      }),
-      mimeType: PropTypes.string
-    })),
+    parts: PropTypes.arrayOf(
+      PropTypes.shape({
+        body: PropTypes.shape({
+          data: PropTypes.string,
+        }),
+        mimeType: PropTypes.string,
+      })
+    ),
     subject: PropTypes.string.isRequired,
-    to: PropTypes.string
-  })
+    to: PropTypes.string,
+  }),
 }
 
 export default Message

@@ -18,6 +18,11 @@ const StyledLink = styled(Link)(({ theme }) => ({
   color: `white`,
   fontFamily: `sans-serif`,
   fontSize: 24,
+  textDecorationSkipInk: 'auto',
+  ':hover': {
+    color: 'white',
+    textDecoration: 'underline',
+  },
 }))
 
 const IconButton = styled.button(

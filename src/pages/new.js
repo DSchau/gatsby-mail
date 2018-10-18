@@ -18,14 +18,11 @@ const styles = {
 
 const Card = styled.form(
   {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
     width: `100%`,
     margin: `0 auto`,
     '@media only screen and (min-width: 768px)': {
-      width: '50%'
-    }
+      width: '50%',
+    },
   },
   ({ theme }) => ({
     backgroundColor: theme.bgLight,
@@ -37,6 +34,7 @@ const Title = styled.h2(({ theme }) => ({
   backgroundColor: theme.inverted.bg,
   color: theme.inverted.color,
   padding: '0.5rem',
+  margin: 0,
   width: '100%',
 }))
 
@@ -95,7 +93,7 @@ class NewMessage extends Component {
   }
 
   handleSubmit = (sendMessage, user) => {
-    return ev => {
+    return async ev => {
       ev.preventDefault()
 
       const fields = ['body', 'subject', 'to']
@@ -110,12 +108,17 @@ class NewMessage extends Component {
       }
 
       return sendMessage({
-        variables: fields.reduce((merged, field) => {
-          merged[field] = this.state[field]
-          return merged
-        }, {
-          from: user.email
-        }),
+        variables: fields.reduce(
+          (merged, field) => {
+            merged[field] = this.state[field]
+            return merged
+          },
+          {
+            from: [user.name, `<${user.email}>`]
+              .filter(part => part && part.length > 0)
+              .join(' '),
+          }
+        ),
       })
     }
   }
@@ -124,61 +127,69 @@ class NewMessage extends Component {
     const { body, subject, to } = this.state
     return (
       <User>
-      {({ user }) => (
-        <Mutation
-          mutation={gql`
-            mutation SendMessage(
-              $body: String!
-              $from: String!
-              $to: String!
-              $subject: String!
-            ) {
-              google {
-                gmail {
-                  sendMessage(data: { body: $body, from: $from, to: $to, subject: $subject }) {
-                    message {
-                      id
+        {({ user }) => (
+          <Mutation
+            mutation={gql`
+              mutation SendMessage(
+                $body: String!
+                $from: String!
+                $to: String!
+                $subject: String!
+              ) {
+                google {
+                  gmail {
+                    sendMessage(
+                      data: {
+                        body: $body
+                        from: $from
+                        to: $to
+                        subject: $subject
+                      }
+                    ) {
+                      message {
+                        id
+                      }
                     }
                   }
                 }
               }
-            }
-          `}
-          children={sendMessage => (
-            <Card onSubmit={this.handleSubmit(sendMessage, user)}>
-              <Title>Send a message</Title>
-              <p>{this.state.error}</p>
-              <Content>
-                <Label htmlFor="subject">
-                  Subject
-                  <Input id="subject" innerRef={ref => (this.firstInput = ref)} value={subject} onChange={this.handleChange} />
-                </Label>
-                <Label htmlFor="to">
-                  To
-                  <Input
-                    id="to"
-                    value={to}
-                    onChange={this.handleChange}
-                  />
-                </Label>
-                <Label htmlFor="body">
-                  Message
-                  <Textarea
-                    id="body"
-                    css={styles.input}
-                    rows={5}
-                    value={body}
-                    onChange={this.handleChange}
-                  />
-                </Label>
-                <Button disabled={!user}>Send message</Button>
-              </Content>
-            </Card>
-          )}
-        />
-      )}
-    </User>
-    );
+            `}
+            children={sendMessage => (
+              <Card onSubmit={this.handleSubmit(sendMessage, user)}>
+                <Title>Send a message</Title>
+                <p>{this.state.error}</p>
+                <Content>
+                  <Label htmlFor="subject">
+                    Subject
+                    <Input
+                      id="subject"
+                      innerRef={ref => (this.firstInput = ref)}
+                      value={subject}
+                      onChange={this.handleChange}
+                    />
+                  </Label>
+                  <Label htmlFor="to">
+                    To
+                    <Input id="to" value={to} onChange={this.handleChange} />
+                  </Label>
+                  <Label htmlFor="body">
+                    Message
+                    <Textarea
+                      id="body"
+                      css={styles.input}
+                      rows={5}
+                      value={body}
+                      onChange={this.handleChange}
+                    />
+                  </Label>
+                  <Button disabled={!user}>Send message</Button>
+                </Content>
+              </Card>
+            )}
+          />
+        )}
+      </User>
+    )
   }
 }
 

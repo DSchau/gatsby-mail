@@ -62,17 +62,18 @@ function Threads({ location }) {
         `}
         variables={{ threadId: id }}
         children={({ loading, data }) => {
-          const messages = data && data.google ? data.google.gmail.thread.expanded.messages : null
+          const messages =
+            data && data.google
+              ? data.google.gmail.thread.expanded.messages
+              : null
           return (
             <>
               {loading && <p>Fetching message details&hellip;</p>}
               {messages && (
                 <>
-                  {
-                    messages.map(message => (
-                      <Message key={message.id} {...message} />
-                    ))
-                  }
+                  {messages.map(message => (
+                    <Message key={message.id} {...message} />
+                  ))}
                 </>
               )}
             </>

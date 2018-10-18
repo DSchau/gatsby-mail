@@ -22,19 +22,19 @@ function MessageList({ className, threads }) {
   return (
     <Container className={className}>
       {threads.map(thread => {
-        const message = thread.expanded.messages[0];
+        const message = thread.expanded.messages[0]
         return (
           <Item key={thread.id}>
-          <Link
-            to={`/threads/${thread.id}`}
-            css={{ textDecoration: `none` }}
-            state={{
-              id: thread.id,
-            }}
-          >
-            <Message showAction={true} showTo={false} {...message} />
-          </Link>
-        </Item>
+            <Link
+              to={`/threads/${thread.id}`}
+              css={{ textDecoration: `none` }}
+              state={{
+                id: thread.id,
+              }}
+            >
+              <Message showAction={true} showTo={false} {...message} />
+            </Link>
+          </Item>
         )
       })}
     </Container>
@@ -43,22 +43,26 @@ function MessageList({ className, threads }) {
 
 MessageList.propTypes = {
   className: PropTypes.string,
-  threads: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    expanded: PropTypes.shape({
-      messages: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        payload: PropTypes.shape({
-          body: PropTypes.shape({
-            data: PropTypes.string
-          }),
-          from: PropTypes.string,
-          subject: PropTypes.string,
-          to: PropTypes.string
-        })
-      }))
+  threads: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      expanded: PropTypes.shape({
+        messages: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            payload: PropTypes.shape({
+              body: PropTypes.shape({
+                data: PropTypes.string,
+              }),
+              from: PropTypes.string,
+              subject: PropTypes.string,
+              to: PropTypes.string,
+            }),
+          })
+        ),
+      }),
     })
-  }))
+  ),
 }
 
 export default MessageList
