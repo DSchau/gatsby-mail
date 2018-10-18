@@ -16,7 +16,7 @@ import Meta from '../components/meta'
 import { DARK, LIGHT } from '../style/theme'
 
 import '../style/global'
-import 'minireset.css'
+import 'normalize.css'
 
 const Container = styled.div({
   display: 'flex',
@@ -60,36 +60,46 @@ class Layout extends Component {
             site {
               siteMetadata {
                 title
+                unauthenticatedRoutes
               }
             }
           }
         `}
-        render={data => (
-          <ThemeProvider theme={this.state.theme}>
-            <AuthenticationProvider>
-              <Meta meta={meta} title={title} />
-              <Container>
-                <Header
-                  siteTitle={data.site.siteMetadata.title}
-                  onThemeChange={this.toggleTheme}
-                />
-                <Authentication>
-                  {({ authenticated }) => (
-                    <Content center={!authenticated || isCentered}>
-                      {typeof authenticated !==
-                      'boolean' ? null : authenticated === true ? (
-                        children
-                      ) : (
-                        <Login />
+        render={data => {
+          const useAuthentication = !data.site.siteMetadata.unauthenticatedRoutes.includes(
+            location.pathname
+          )
+          return (
+            <ThemeProvider theme={this.state.theme}>
+              <AuthenticationProvider>
+                <Meta meta={meta} title={title} />
+                <Container>
+                  <Header
+                    siteTitle={data.site.siteMetadata.title}
+                    onThemeChange={this.toggleTheme}
+                  />
+                  {useAuthentication ? (
+                    <Authentication>
+                      {({ authenticated }) => (
+                        <Content center={!authenticated || isCentered}>
+                          {typeof authenticated !==
+                          'boolean' ? null : authenticated === true ? (
+                            children
+                          ) : (
+                            <Login />
+                          )}
+                        </Content>
                       )}
-                    </Content>
+                    </Authentication>
+                  ) : (
+                    <Content>{children}</Content>
                   )}
-                </Authentication>
-                <Footer />
-              </Container>
-            </AuthenticationProvider>
-          </ThemeProvider>
-        )}
+                  <Footer />
+                </Container>
+              </AuthenticationProvider>
+            </ThemeProvider>
+          )
+        }}
       />
     )
   }

@@ -11,11 +11,14 @@ function User({ children }) {
           me {
             gmail {
               email
+              name
             }
           }
         }
       `}
-      children={({ data }) => children({ user: data.me ? data.me.gmail : null })}
+      children={({ data }) =>
+        children({ user: data.me ? data.me.gmail : null })
+      }
     />
   )
 }
