@@ -54,4 +54,6 @@ export class AuthenticationProvider extends Component {
   }
 }
 
+Consumer.Provider = AuthenticationProvider
+
 export default Consumer

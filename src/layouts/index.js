@@ -4,9 +4,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled from 'react-emotion'
 import { ThemeProvider } from 'emotion-theming'
 
-import Authentication, {
-  AuthenticationProvider,
-} from '../components/authentication'
+import Authentication from '../components/authentication'
 import Login from '../components/login'
 import Content from '../components/content'
 import Header from '../components/header'
@@ -71,7 +69,7 @@ class Layout extends Component {
           )
           return (
             <ThemeProvider theme={this.state.theme}>
-              <AuthenticationProvider>
+              <Authentication.Provider>
                 <Meta meta={meta} title={title} />
                 <Container>
                   <Header
@@ -96,7 +94,7 @@ class Layout extends Component {
                   )}
                   <Footer />
                 </Container>
-              </AuthenticationProvider>
+              </Authentication.Provider>
             </ThemeProvider>
           )
         }}

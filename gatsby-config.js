@@ -1,7 +1,12 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 const path = require('path')
+const { repository } = require('./package.json')
 
 module.exports = {
   siteMetadata: {
+    repository,
     title: 'Gatsby Mail',
     unauthenticatedRoutes: [`/privacy-policy/`, `/terms-of-service/`],
   },
@@ -37,5 +42,16 @@ module.exports = {
     },
     'gatsby-transformer-remark',
     'gatsby-transformer-yaml',
+    {
+      resolve: 'gatsby-source-graphql',
+      options: {
+        typeName: 'GitHub',
+        fieldName: 'github',
+        url: 'https://api.github.com/graphql',
+        headers: {
+          Authorization: `bearer ${process.env.GITHUB_API_TOKEN}`,
+        },
+      },
+    },
   ],
 }

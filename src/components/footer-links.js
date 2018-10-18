@@ -16,6 +16,15 @@ const ListItem = styled.li({
   margin: '0.5rem',
 })
 
+const StyledLink = styled(Link)(({ theme }) => ({
+  color: theme.accent,
+  textDecorationSkip: 'ink',
+  ':hover': {
+    color: theme.accent,
+    textDecoration: 'underline',
+  },
+}))
+
 function FooterLinks({ className }) {
   return (
     <StaticQuery
@@ -40,7 +49,9 @@ function FooterLinks({ className }) {
           <List>
             {data.markdown.edges.map(({ node }) => (
               <ListItem key={node.fields.slug}>
-                <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+                <StyledLink to={node.fields.slug}>
+                  {node.frontmatter.title}
+                </StyledLink>
               </ListItem>
             ))}
           </List>

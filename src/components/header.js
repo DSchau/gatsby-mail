@@ -18,7 +18,7 @@ const StyledLink = styled(Link)(({ theme }) => ({
   color: `white`,
   fontFamily: `sans-serif`,
   fontSize: 24,
-  textDecorationSkipInk: 'auto',
+  textDecorationSkip: 'ink',
   ':hover': {
     color: 'white',
     textDecoration: 'underline',
