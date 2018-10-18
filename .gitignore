@@ -8,5 +8,5 @@ yarn-error.log
 .DS_Store
 
 # secrets
-.env
+.env*
 !.env.sample
