@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'react-emotion'
 import { graphql } from 'gatsby'
 
+import Meta from '../components/meta'
+
 const Content = styled.div(
   {
     margin: '0 auto',
@@ -19,7 +21,15 @@ const Content = styled.div(
 )
 
 function Document({ data }) {
-  return <Content dangerouslySetInnerHTML={{ __html: data.markdown.html }} />
+  const {
+    markdown: { html, frontmatter },
+  } = data
+  return (
+    <>
+      <Meta title={frontmatter.title} />
+      <Content dangerouslySetInnerHTML={{ __html: html }} />
+    </>
+  )
 }
 
 export default Document
@@ -28,6 +38,9 @@ export const pageQuery = graphql`
   query DocumentBySlug($slug: String!) {
     markdown: markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      frontmatter {
+        title
+      }
     }
   }
 `

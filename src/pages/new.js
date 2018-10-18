@@ -3,6 +3,7 @@ import styled from 'react-emotion'
 import { gql } from 'apollo-boost'
 import { Mutation } from 'react-apollo'
 
+import Meta from '../components/meta'
 import Textarea from '../components/textarea'
 import User from '../components/user'
 
@@ -194,87 +195,90 @@ class NewMessage extends Component {
   render() {
     const { body, subject, to } = this.state
     return (
-      <User>
-        {({ user }) => (
-          <Mutation
-            onCompleted={this.handleComplete}
-            mutation={gql`
-              mutation SendMessage(
-                $body: String!
-                $from: String!
-                $to: String!
-                $subject: String!
-              ) {
-                google {
-                  gmail {
-                    sendMessage(
-                      data: {
-                        body: $body
-                        from: $from
-                        to: $to
-                        subject: $subject
-                      }
-                    ) {
-                      message {
-                        threadId
+      <>
+        <Meta title="Send a message" />
+        <User>
+          {({ user }) => (
+            <Mutation
+              onCompleted={this.handleComplete}
+              mutation={gql`
+                mutation SendMessage(
+                  $body: String!
+                  $from: String!
+                  $to: String!
+                  $subject: String!
+                ) {
+                  google {
+                    gmail {
+                      sendMessage(
+                        data: {
+                          body: $body
+                          from: $from
+                          to: $to
+                          subject: $subject
+                        }
+                      ) {
+                        message {
+                          threadId
+                        }
                       }
                     }
                   }
                 }
-              }
-            `}
-            children={sendMessage => {
-              const message = this.getMessage(
-                this.state.status,
-                this.state.message
-              )
-              return (
-                <Card onSubmit={this.handleSubmit(sendMessage, user)}>
-                  <Title>Send a message</Title>
-                  {message && (
-                    <Alert type={this.state.status}>
-                      <Text>{message}</Text>
-                    </Alert>
-                  )}
-                  <Content>
-                    <Label htmlFor="subject">
-                      Subject
-                      <Input
-                        id="subject"
-                        innerRef={ref => (this.firstInput = ref)}
-                        value={subject}
-                        onChange={this.handleChange}
-                        required={true}
-                      />
-                    </Label>
-                    <Label htmlFor="to">
-                      To
-                      <Input
-                        id="to"
-                        value={to}
-                        onChange={this.handleChange}
-                        required={true}
-                      />
-                    </Label>
-                    <Label htmlFor="body">
-                      Message
-                      <Textarea
-                        id="body"
-                        css={styles.input}
-                        rows={5}
-                        value={body}
-                        onChange={this.handleChange}
-                        required={true}
-                      />
-                    </Label>
-                    <Button disabled={!user}>Send message</Button>
-                  </Content>
-                </Card>
-              )
-            }}
-          />
-        )}
-      </User>
+              `}
+              children={sendMessage => {
+                const message = this.getMessage(
+                  this.state.status,
+                  this.state.message
+                )
+                return (
+                  <Card onSubmit={this.handleSubmit(sendMessage, user)}>
+                    <Title>Send a message</Title>
+                    {message && (
+                      <Alert type={this.state.status}>
+                        <Text>{message}</Text>
+                      </Alert>
+                    )}
+                    <Content>
+                      <Label htmlFor="subject">
+                        Subject
+                        <Input
+                          id="subject"
+                          innerRef={ref => (this.firstInput = ref)}
+                          value={subject}
+                          onChange={this.handleChange}
+                          required={true}
+                        />
+                      </Label>
+                      <Label htmlFor="to">
+                        To
+                        <Input
+                          id="to"
+                          value={to}
+                          onChange={this.handleChange}
+                          required={true}
+                        />
+                      </Label>
+                      <Label htmlFor="body">
+                        Message
+                        <Textarea
+                          id="body"
+                          css={styles.input}
+                          rows={5}
+                          value={body}
+                          onChange={this.handleChange}
+                          required={true}
+                        />
+                      </Label>
+                      <Button disabled={!user}>Send message</Button>
+                    </Content>
+                  </Card>
+                )
+              }}
+            />
+          )}
+        </User>
+      </>
     )
   }
 }
