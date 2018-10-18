@@ -3,7 +3,7 @@ const path = require('path')
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Mail',
-    unauthenticatedRoutes: [`/privacy-policy`, `/terms-of-service`],
+    unauthenticatedRoutes: [`/privacy-policy/`, `/terms-of-service/`],
   },
   plugins: [
     'gatsby-plugin-react-helmet',

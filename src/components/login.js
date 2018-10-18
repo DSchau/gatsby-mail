@@ -2,10 +2,17 @@ import React from 'react'
 import styled from 'react-emotion'
 
 import Authentication from './authentication'
+import FooterLinks from '../components/footer-links'
 
 const Container = styled.div(
   {
     display: `flex`,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    minHeight: '100%',
+    flexDirection: 'column',
+    position: 'relative',
   },
   ({ theme }) => ({
     color: theme.color,
@@ -63,6 +70,7 @@ function Login() {
           )
         }}
       </Authentication>
+      <FooterLinks css={{ position: 'absolute', bottom: '0' }} />
     </Container>
   )
 }
