@@ -6,6 +6,8 @@ import { Mutation } from 'react-apollo'
 import Textarea from '../components/textarea'
 import User from '../components/user'
 
+import delay from '../util/delay'
+
 const styles = {
   input: {
     display: 'block',
@@ -37,6 +39,33 @@ const Title = styled.h2(({ theme }) => ({
   margin: 0,
   width: '100%',
 }))
+
+const Alert = styled.div(
+  {
+    color: 'white',
+    backgroundColor: '#00A388',
+    padding: '0.5rem 1rem',
+    margin: '1rem',
+    textAlign: 'center',
+  },
+  ({ type }) => ({
+    ...(type === 'error'
+      ? {
+          backgroundColor: '#C33325',
+        }
+      : {}),
+    ...(type === 'loading'
+      ? {
+          backgroundColor: '#526C70',
+        }
+      : {}),
+  })
+)
+
+const Text = styled.p({
+  margin: 0,
+  lineHeight: 1.5,
+})
 
 const Content = styled.div({
   padding: '1rem',
@@ -79,6 +108,8 @@ class NewMessage extends Component {
     body: ``,
     subject: ``,
     to: ``,
+    message: ``,
+    status: ``,
   }
 
   componentDidMount() {
@@ -92,6 +123,21 @@ class NewMessage extends Component {
     })
   }
 
+  handleComplete = async () => {
+    this.setState({
+      body: ``,
+      subject: ``,
+      to: ``,
+      status: `success`,
+    })
+
+    await delay(2500)
+
+    this.setState({
+      status: ``,
+    })
+  }
+
   handleSubmit = (sendMessage, user) => {
     return async ev => {
       ev.preventDefault()
@@ -101,11 +147,16 @@ class NewMessage extends Component {
 
       if (!valid) {
         this.setState({
-          error: `All fields are required`,
+          status: `error`,
+          message: `All fields are required`,
         })
 
         return
       }
+
+      this.setState({
+        status: `loading`,
+      })
 
       return sendMessage({
         variables: fields.reduce(
@@ -123,12 +174,30 @@ class NewMessage extends Component {
     }
   }
 
+  getMessage(status, message) {
+    if (message) {
+      return message
+    }
+
+    switch (status) {
+      case 'loading':
+        return 'Sending message...'
+      case 'error':
+        return 'Oh no, an error!'
+      case 'success':
+        return 'Success! Sent your message.'
+      default:
+        return ''
+    }
+  }
+
   render() {
     const { body, subject, to } = this.state
     return (
       <User>
         {({ user }) => (
           <Mutation
+            onCompleted={this.handleComplete}
             mutation={gql`
               mutation SendMessage(
                 $body: String!
@@ -147,45 +216,62 @@ class NewMessage extends Component {
                       }
                     ) {
                       message {
-                        id
+                        threadId
                       }
                     }
                   }
                 }
               }
             `}
-            children={sendMessage => (
-              <Card onSubmit={this.handleSubmit(sendMessage, user)}>
-                <Title>Send a message</Title>
-                <p>{this.state.error}</p>
-                <Content>
-                  <Label htmlFor="subject">
-                    Subject
-                    <Input
-                      id="subject"
-                      innerRef={ref => (this.firstInput = ref)}
-                      value={subject}
-                      onChange={this.handleChange}
-                    />
-                  </Label>
-                  <Label htmlFor="to">
-                    To
-                    <Input id="to" value={to} onChange={this.handleChange} />
-                  </Label>
-                  <Label htmlFor="body">
-                    Message
-                    <Textarea
-                      id="body"
-                      css={styles.input}
-                      rows={5}
-                      value={body}
-                      onChange={this.handleChange}
-                    />
-                  </Label>
-                  <Button disabled={!user}>Send message</Button>
-                </Content>
-              </Card>
-            )}
+            children={sendMessage => {
+              const message = this.getMessage(
+                this.state.status,
+                this.state.message
+              )
+              return (
+                <Card onSubmit={this.handleSubmit(sendMessage, user)}>
+                  <Title>Send a message</Title>
+                  {message && (
+                    <Alert type={this.state.status}>
+                      <Text>{message}</Text>
+                    </Alert>
+                  )}
+                  <Content>
+                    <Label htmlFor="subject">
+                      Subject
+                      <Input
+                        id="subject"
+                        innerRef={ref => (this.firstInput = ref)}
+                        value={subject}
+                        onChange={this.handleChange}
+                        required={true}
+                      />
+                    </Label>
+                    <Label htmlFor="to">
+                      To
+                      <Input
+                        id="to"
+                        value={to}
+                        onChange={this.handleChange}
+                        required={true}
+                      />
+                    </Label>
+                    <Label htmlFor="body">
+                      Message
+                      <Textarea
+                        id="body"
+                        css={styles.input}
+                        rows={5}
+                        value={body}
+                        onChange={this.handleChange}
+                        required={true}
+                      />
+                    </Label>
+                    <Button disabled={!user}>Send message</Button>
+                  </Content>
+                </Card>
+              )
+            }}
           />
         )}
       </User>

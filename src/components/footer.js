@@ -34,12 +34,15 @@ const Heart = styled(FaHeart)({
 })
 
 const Link = styled.a({
-  display: 'inline-block',
+  display: 'none',
   color: 'inherit',
   transition: 'transform 175ms cubic-bezier(.17, .67, .83, .67)',
   ':hover': {
     color: 'inherit',
     transform: 'scale(1.1)',
+  },
+  '@media only screen and (min-width: 768px)': {
+    display: 'inline-block',
   },
 })
 
