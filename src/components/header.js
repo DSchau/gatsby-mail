@@ -42,7 +42,7 @@ const IconButton = styled.button(
 
 const Header = ({ siteTitle }) => (
   <Theme>
-    {({ toggleTheme }) => (
+    {({ toggleTheme, theme }) => (
       <Container>
         <h1 style={{ margin: 0 }}>
           <StyledLink to="/">{siteTitle}</StyledLink>
@@ -58,7 +58,10 @@ const Header = ({ siteTitle }) => (
             </>
           )}
         </Authentication>
-        <IconButton onClick={toggleTheme}>
+        <IconButton
+          onClick={toggleTheme}
+          title={`Switch to ${theme.name === 'dark' ? 'light' : 'dark'} theme`}
+        >
           <FaLightbulb />
         </IconButton>
       </Container>
