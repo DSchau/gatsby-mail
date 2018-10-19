@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'react-emotion'
-import { FaLightbulb } from 'react-icons/fa'
+import { FaLightbulb, FaLockOpen } from 'react-icons/fa'
 import PropTypes from 'prop-types'
+
+import Authentication from './authentication'
+import Theme from './theme'
 
 const Container = styled.header(({ theme }) => ({
   flex: `0 0 auto`,
@@ -37,19 +40,37 @@ const IconButton = styled.button(
   })
 )
 
-const Header = ({ onThemeChange, siteTitle }) => (
-  <Container>
-    <h1 style={{ margin: 0 }}>
-      <StyledLink to="/">{siteTitle}</StyledLink>
-    </h1>
-    <IconButton onClick={onThemeChange}>
-      <FaLightbulb />
-    </IconButton>
-  </Container>
+const Header = ({ siteTitle }) => (
+  <Theme>
+    {({ toggleTheme, theme }) => (
+      <Container>
+        <h1 style={{ margin: 0 }}>
+          <StyledLink to="/">{siteTitle}</StyledLink>
+        </h1>
+        <Authentication>
+          {({ authenticated, logout }) => (
+            <>
+              {authenticated ? (
+                <IconButton onClick={logout()} title="Log out">
+                  <FaLockOpen />
+                </IconButton>
+              ) : null}
+            </>
+          )}
+        </Authentication>
+        <IconButton
+          onClick={toggleTheme}
+          title={`Switch to ${theme.name === 'dark' ? 'light' : 'dark'} theme`}
+        >
+          <FaLightbulb />
+        </IconButton>
+      </Container>
+    )}
+  </Theme>
 )
 
 Header.propTypes = {
-  onThemeChange: PropTypes.func.isRequired,
+  siteTitle: PropTypes.string.isRequired,
 }
 
 export default Header

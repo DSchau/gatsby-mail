@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import getAuth from '../util/authentication'
 
 const { Provider, Consumer } = React.createContext(`authentication`)
