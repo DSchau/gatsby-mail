@@ -12,6 +12,7 @@ function User({ children }) {
             gmail {
               email
               name
+              picture
             }
           }
         }

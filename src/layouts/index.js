@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'react-emotion'
-import { ThemeProvider } from 'emotion-theming'
 
 import Authentication from '../components/authentication'
 import Login from '../components/login'
@@ -10,8 +9,7 @@ import Content from '../components/content'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Meta from '../components/meta'
-
-import { DARK, LIGHT } from '../style/theme'
+import Theme from '../components/theme'
 
 import '../style/global'
 import 'normalize.css'
@@ -24,30 +22,6 @@ const Container = styled.div({
 })
 
 class Layout extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      theme: this.getTheme(props.theme),
-    }
-  }
-
-  getTheme(variant) {
-    return {
-      ...(variant === 'dark' ? DARK : LIGHT),
-      inverted: variant === 'dark' ? LIGHT : DARK,
-    }
-  }
-
-  toggleTheme = () => {
-    this.setState(state => {
-      const current = state.theme.name
-      return {
-        theme: this.getTheme(current === 'dark' ? 'light' : 'dark'),
-      }
-    })
-  }
-
   render() {
     const { children, location, meta, title } = this.props
     const isCentered = [`/new`].includes(location.pathname)
@@ -68,14 +42,11 @@ class Layout extends Component {
             location.pathname
           )
           return (
-            <ThemeProvider theme={this.state.theme}>
+            <Theme.Provider>
               <Authentication.Provider>
                 <Meta meta={meta} title={title} />
                 <Container>
-                  <Header
-                    siteTitle={data.site.siteMetadata.title}
-                    onThemeChange={this.toggleTheme}
-                  />
+                  <Header siteTitle={data.site.siteMetadata.title} />
                   {useAuthentication ? (
                     <Authentication>
                       {({ authenticated }) => (
@@ -95,7 +66,7 @@ class Layout extends Component {
                   <Footer />
                 </Container>
               </Authentication.Provider>
-            </ThemeProvider>
+            </Theme.Provider>
           )
         }}
       />

@@ -10,6 +10,7 @@ const Container = styled.main(
     padding: `1rem`,
     position: 'relative',
     overflowY: 'auto',
+    WebikitOverflowScrolling: 'touch',
   },
   ({ center, theme }) => ({
     backgroundColor: theme.bg,
