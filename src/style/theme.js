@@ -5,7 +5,7 @@ export const DARK = {
   accent: BASE_COLOR,
   bg: `#222`,
   bgLight: `#666`,
-  color: `#eee`,
+  color: `#ddd`,
 }
 
 export const LIGHT = {

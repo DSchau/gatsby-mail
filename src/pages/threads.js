@@ -1,27 +1,15 @@
 import React from 'react'
 import { gql } from 'apollo-boost'
 import { Query } from 'react-apollo'
-import { Link } from 'gatsby'
-import styled from 'react-emotion'
-import { FaChevronLeft } from 'react-icons/fa'
 
 import Message from '../components/message'
-
-const StyledLink = styled(Link)(({ theme }) => ({
-  display: 'inline-block',
-  margin: '0.25rem 0',
-  marginRight: 'auto',
-  backgroundColor: theme.color,
-  color: theme.bg,
-  padding: '0.25rem 0.5rem',
-}))
+import Meta from '../components/meta'
+import Toolbar from '../components/toolbar'
 
 function Wrapper({ children, id }) {
   return (
     <>
-      <StyledLink to="/" title="Back to inbox">
-        <FaChevronLeft />
-      </StyledLink>
+      <Toolbar />
       {id ? children : <h1>Message not found</h1>}
     </>
   )
@@ -71,6 +59,7 @@ function Threads({ location }) {
               {loading && <p>Fetching message details&hellip;</p>}
               {messages && (
                 <>
+                  <Meta title={messages[0].payload.subject} />
                   {messages.map(message => (
                     <Message key={message.id} {...message} />
                   ))}

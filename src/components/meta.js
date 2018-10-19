@@ -59,6 +59,7 @@ Meta.propTypes = {
 
 Meta.defaultProps = {
   title: `Inbox`,
+  meta: [],
 }
 
 export default Meta

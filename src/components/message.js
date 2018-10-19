@@ -30,15 +30,20 @@ const Details = styled.div(
   })
 )
 
-const To = styled.h2({
-  margin: '0.25rem 0',
-  padding: 0,
-  fontSize: 14,
-  fontWeight: 'normal',
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-})
+const To = styled.h2(
+  {
+    margin: '0.25rem 0',
+    padding: 0,
+    fontSize: 14,
+    fontWeight: 'normal',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  ({ theme }) => ({
+    color: theme.color,
+  })
+)
 
 const From = styled(To)()
 
