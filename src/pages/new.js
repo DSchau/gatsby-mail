@@ -1,45 +1,48 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import styled, { css } from 'react-emotion'
 import { gql } from 'apollo-boost'
 import { Mutation } from 'react-apollo'
+import { MdSend } from 'react-icons/md'
 
+import FloatingButton from '../components/floating-button'
 import Meta from '../components/meta'
 import Textarea from '../components/textarea'
+import Toolbar from '../components/toolbar'
 import User from '../components/user'
 
+import getZIndex from '../style/z-index'
 import delay from '../util/delay'
 
 const styles = {
   input: {
     display: 'block',
-    border: `1px solid #ccc`,
+    border: 'none',
+    borderBottom: `1px solid #eee`,
     padding: '0.5rem 0.25rem',
     margin: '0.125rem 0',
     width: '100%',
   },
 }
 
-const Card = styled.form(
+const Container = styled.div(
   {
-    width: `100%`,
-    margin: `0 auto`,
-    '@media only screen and (min-width: 768px)': {
-      width: '50%',
-    },
+    flex: 1,
+    height: '100%',
+    width: '100%',
+    zIndex: getZIndex('button'),
   },
   ({ theme }) => ({
-    backgroundColor: theme.bgLight,
+    backgroundColor: theme.bg,
   })
 )
 
-const Title = styled.h2(({ theme }) => ({
-  display: 'block',
-  backgroundColor: theme.inverted.bg,
-  color: theme.inverted.color,
-  padding: '0.5rem',
-  margin: 0,
-  width: '100%',
-}))
+const Card = styled.form({
+  width: `100%`,
+  margin: `0 auto`,
+  '@media only screen and (min-width: 768px)': {
+    width: '50%',
+  },
+})
 
 const Alert = styled.div(
   {
@@ -90,19 +93,11 @@ Input.defaultProps = {
   type: 'text',
 }
 
-const Button = styled.button(({ theme }) => ({
-  backgroundColor: theme.accent,
-  border: 'none',
-  color: 'white',
-  padding: '0.5rem 1rem',
-  marginTop: '1rem',
-  width: '100%',
-  textAlign: 'center',
-}))
-
-Button.defaultProps = {
-  type: 'submit',
-}
+const BottomRight = styled.div({
+  position: 'fixed',
+  bottom: 24,
+  right: 16,
+})
 
 class NewMessage extends Component {
   state = {
@@ -195,8 +190,9 @@ class NewMessage extends Component {
   render() {
     const { body, subject, to } = this.state
     return (
-      <>
+      <Container>
         <Meta title="Send a message" />
+        <Toolbar />
         <User>
           {({ user }) => (
             <Mutation
@@ -233,28 +229,27 @@ class NewMessage extends Component {
                 )
                 return (
                   <Card onSubmit={this.handleSubmit(sendMessage, user)}>
-                    <Title>Send a message</Title>
                     {message && (
                       <Alert type={this.state.status}>
                         <Text>{message}</Text>
                       </Alert>
                     )}
                     <Content>
-                      <Label htmlFor="subject">
-                        Subject
-                        <Input
-                          id="subject"
-                          innerRef={ref => (this.firstInput = ref)}
-                          value={subject}
-                          onChange={this.handleChange}
-                          required={true}
-                        />
-                      </Label>
                       <Label htmlFor="to">
                         To
                         <Input
                           id="to"
                           value={to}
+                          innerRef={ref => (this.firstInput = ref)}
+                          onChange={this.handleChange}
+                          required={true}
+                        />
+                      </Label>
+                      <Label htmlFor="subject">
+                        Subject
+                        <Input
+                          id="subject"
+                          value={subject}
                           onChange={this.handleChange}
                           required={true}
                         />
@@ -270,7 +265,14 @@ class NewMessage extends Component {
                           required={true}
                         />
                       </Label>
-                      <Button disabled={!user}>Send message</Button>
+                      <BottomRight>
+                        <FloatingButton
+                          css={{ backgroundColor: '#3FA9F5' }}
+                          disabled={!user}
+                        >
+                          <MdSend />
+                        </FloatingButton>
+                      </BottomRight>
                     </Content>
                   </Card>
                 )
@@ -278,7 +280,7 @@ class NewMessage extends Component {
             />
           )}
         </User>
-      </>
+      </Container>
     )
   }
 }

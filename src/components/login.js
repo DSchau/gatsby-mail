@@ -1,54 +1,53 @@
 import React from 'react'
 import styled from 'react-emotion'
+import { FaArrowRight, FaExclamationTriangle } from 'react-icons/fa'
 
 import Authentication from './authentication'
-import FooterLinks from '../components/footer-links'
+import Button from './button'
+import LoginLinks from './login-links'
 
 const Container = styled.div(
   {
     display: `flex`,
-    alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
     minHeight: '100%',
     flexDirection: 'column',
-    position: 'relative',
+    padding: '1rem',
   },
   ({ theme }) => ({
     color: theme.color,
   })
 )
 
-const Card = styled.div(({ theme }) => ({
-  display: `flex`,
-  flexDirection: 'column',
-  alignItems: `center`,
-  justifyContent: `center`,
-  padding: `5rem`,
-  position: 'relative',
-  backgroundColor: 'white',
-  borderRadius: 4,
-}))
-
-const Message = styled.p({
-  position: 'absolute',
-  bottom: 0,
-  margin: 0,
-  padding: 0,
-  fontSize: 12,
+const Content = styled.div({
+  padding: '1rem',
 })
 
-const Button = styled.button(
+const Title = styled.h1({
+  fontSize: 28,
+  fontWeight: 400,
+  textAlign: 'left',
+})
+
+const Subtitle = styled.span(
   {
-    padding: `1rem 2rem`,
-    border: `none`,
-    borderRadius: 8,
-    color: `white`,
-    cursor: `pointer`,
-    fontSize: 24,
+    display: 'block',
+    fontSize: 40,
+    fontWeight: 700,
   },
   ({ theme }) => ({
-    backgroundColor: theme.accent,
+    color: theme.name === 'dark' ? '#3FA9F5' : theme.accent,
+  })
+)
+
+const Message = styled.h4(
+  {
+    fontSize: 14,
+    margin: '0.5rem 0',
+  },
+  ({ theme }) => ({
+    color: theme.alert,
   })
 )
 
@@ -61,16 +60,26 @@ function Login() {
             return null
           }
           return (
-            <Card>
-              <Button onClick={login()}>Login</Button>
+            <>
+              <Title>
+                Welcome to
+                <Subtitle>Gatsby Mail</Subtitle>
+              </Title>
+              <Button css={{ margin: '1rem 0' }} onClick={login()}>
+                Log in with Google{' '}
+                <FaArrowRight css={{ position: 'relative', top: 4 }} />
+              </Button>
               <Message>
-                (Don't use this for anything <em>real!</em>)
+                <FaExclamationTriangle
+                  css={{ position: 'relative', top: 2, marginRight: '0.25rem' }}
+                />{' '}
+                Don't use this for anything <em>real!</em>
               </Message>
-            </Card>
+            </>
           )
         }}
       </Authentication>
-      <FooterLinks css={{ position: 'absolute', bottom: '0' }} />
+      <LoginLinks />
     </Container>
   )
 }

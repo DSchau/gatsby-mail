@@ -50,7 +50,10 @@ class Layout extends Component {
                   {useAuthentication ? (
                     <Authentication>
                       {({ authenticated }) => (
-                        <Content center={!authenticated || isCentered}>
+                        <Content
+                          center={!authenticated || isCentered}
+                          decoration={useAuthentication}
+                        >
                           {typeof authenticated !==
                           'boolean' ? null : authenticated === true ? (
                             children
@@ -61,9 +64,9 @@ class Layout extends Component {
                       )}
                     </Authentication>
                   ) : (
-                    <Content>{children}</Content>
+                    <Content decoration={true}>{children}</Content>
                   )}
-                  <Footer />
+                  <Footer stripes={location.pathname === `/`} />
                 </Container>
               </Authentication.Provider>
             </Theme.Provider>

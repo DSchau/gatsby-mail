@@ -8,11 +8,15 @@ import { Link as GatsbyLink } from 'gatsby'
 import FloatingButton from '../components/floating-button'
 import MessageList from '../components/message-list'
 
-const Container = styled.div()
+import getZIndex from '../style/z-index'
+
+const Container = styled.div({
+  zIndex: getZIndex('button'),
+})
 
 const BottomRight = styled.div({
   position: 'fixed',
-  bottom: 80,
+  bottom: 24,
   right: 16,
 })
 
@@ -30,6 +34,7 @@ const IndexPage = () => (
                   messages {
                     id
                     payload {
+                      date
                       from
                       to
                       subject
@@ -42,12 +47,12 @@ const IndexPage = () => (
         }
       }
     `}
-    children={({ loading, error, data }) => (
+    children={({ loading, data }) => (
       <Container>
         {loading && <p>Loading mail&hellip;</p>}
         {data.google && (
           <MessageList
-            css={{ paddingBottom: 48 }}
+            css={{ paddingBottom: 24 }}
             threads={data.google.gmail.queryThreads.threads}
           />
         )}
