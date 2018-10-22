@@ -13,7 +13,6 @@ export const DARK = {
   footerLink: '#8953A3',
   link: '#E0D6EB',
   linkAccent: '#FFDF37',
-  name: 'dark',
 }
 
 export const LIGHT = {
@@ -29,5 +28,4 @@ export const LIGHT = {
   footerLink: '#8953A3',
   link: BASE_COLOR,
   linkAccent: BASE_COLOR,
-  name: 'light',
 }
