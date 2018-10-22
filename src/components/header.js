@@ -12,18 +12,17 @@ const Container = styled.header(({ theme }) => ({
   display: `flex`,
   alignItems: `center`,
   justifyContent: `space-between`,
-  backgroundColor: theme.accent,
+  backgroundColor: theme.bg,
   color: theme.bg,
   padding: `1rem 0.5rem`,
 }))
 
 const StyledLink = styled(Link)(({ theme }) => ({
-  color: `white`,
-  fontFamily: `sans-serif`,
+  color: theme.color,
   fontSize: 24,
   textDecorationSkip: 'ink',
   ':hover': {
-    color: 'white',
+    color: theme.color,
     textDecoration: 'underline',
   },
 }))

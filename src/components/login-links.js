@@ -11,21 +11,22 @@ const List = styled.ul({
 })
 
 const ListItem = styled.li({
-  display: 'inline-block',
+  display: 'block',
+  fontSize: 14,
   listStyleType: 'none',
-  margin: '0.5rem',
+  margin: '0.75rem 0',
 })
 
 const StyledLink = styled(Link)(({ theme }) => ({
-  color: theme.accent,
-  textDecorationSkip: 'ink',
+  color: theme.link,
+  textDecoration: 'none',
   ':hover': {
-    color: theme.accent,
+    color: theme.link,
     textDecoration: 'underline',
   },
 }))
 
-function FooterLinks({ className }) {
+function LoginLinks({ className }) {
   return (
     <StaticQuery
       query={graphql`
@@ -61,8 +62,8 @@ function FooterLinks({ className }) {
   )
 }
 
-FooterLinks.propTypes = {
+LoginLinks.propTypes = {
   className: PropTypes.string,
 }
 
-export default FooterLinks
+export default LoginLinks
