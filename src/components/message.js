@@ -10,9 +10,15 @@ import { SYSTEM_FONTS } from '../util/typography'
 
 const Container = styled.div(({ theme }) => ({
   backgroundColor: theme.bg,
-  borderBottom: `1px solid ${theme.inverted.link}`,
+  borderBottomColor: theme.cardBorder,
+  borderBottomStyle: `solid`,
+  borderBottomWidth: 1,
   color: theme.inverted.bg,
   padding: '0.5rem 0',
+  transition: '175ms cubic-bezier(.17, .67, .83, .67)',
+  ':hover': {
+    backgroundColor: theme.cardBorder,
+  },
 }))
 
 const Content = styled.div({
