@@ -6,6 +6,7 @@ import format from 'date-fns/format'
 
 import AirMail from './air-mail'
 import decodePayload from '../util/parse-payload'
+import { SYSTEM_FONTS } from '../util/typography'
 
 const Container = styled.div(({ theme }) => ({
   backgroundColor: theme.bg,
@@ -40,6 +41,7 @@ const To = styled.h2(
   {
     margin: '0.25rem 0',
     padding: 0,
+    fontFamily: SYSTEM_FONTS.join(`,`),
     fontSize: 14,
     fontWeight: 'normal',
     whiteSpace: 'nowrap',
