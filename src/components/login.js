@@ -13,12 +13,16 @@ const Container = styled.div(
     flex: 1,
     minHeight: '100%',
     flexDirection: 'column',
-    position: 'relative',
+    padding: '1rem',
   },
   ({ theme }) => ({
     color: theme.color,
   })
 )
+
+const Content = styled.div({
+  padding: '1rem',
+})
 
 const Title = styled.h1({
   fontSize: 28,
@@ -66,8 +70,10 @@ function Login() {
                 <FaArrowRight css={{ position: 'relative', top: 4 }} />
               </Button>
               <Message>
-                <FaExclamationTriangle /> Don't use this for anything{' '}
-                <em>real!</em>
+                <FaExclamationTriangle
+                  css={{ position: 'relative', top: 2, marginRight: '0.25rem' }}
+                />{' '}
+                Don't use this for anything <em>real!</em>
               </Message>
             </>
           )

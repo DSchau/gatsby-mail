@@ -1,48 +1,46 @@
 import React from 'react'
 import styled from 'react-emotion'
-import { FaHeart, FaGithub, FaStar } from 'react-icons/fa'
+import { FaGithub, FaStar } from 'react-icons/fa'
 import { graphql, StaticQuery } from 'gatsby'
+import PropTypes from 'prop-types'
 
-import { PULSE } from '../style/animations'
+import Airmail from './air-mail'
+import getZIndex from '../style/z-index'
 
 const Container = styled.footer(
   {
-    display: `flex`,
-    alignItems: `center`,
-    justifyContent: `center`,
     flex: '0 0 auto',
-    padding: `1rem 0.5rem`,
+    zIndex: getZIndex('footer'),
   },
   ({ theme }) => ({
-    backgroundColor: theme.inverted.bg,
-    color: theme.inverted.color,
+    backgroundColor: theme.bgDark,
+    color: theme.footerLink,
   })
 )
 
-const Message = styled.p({
-  fontSize: 14,
-  margin: 0,
+const Contents = styled.div({
+  padding: `0.75rem 1rem`,
 })
 
-const Heart = styled(FaHeart)({
-  color: `red`,
-  margin: `0.125rem 0.25rem`,
-  fontSize: 16,
-  position: 'relative',
-  top: 2,
-  ...PULSE,
+const List = styled.ul({
+  margin: 0,
+  padding: 0,
+})
+
+const ListItem = styled.li({
+  display: 'inline-block',
+  margin: '0.25rem 0.5rem',
+  listStyleType: 'none',
 })
 
 const Link = styled.a({
-  display: 'none',
   color: 'inherit',
-  transition: 'transform 175ms cubic-bezier(.17, .67, .83, .67)',
+  fontWeight: 'bold',
+  transition: '175ms cubic-bezier(.17, .67, .83, .67)',
+  textDecoration: 'none',
+  fontSize: 14,
   ':hover': {
-    color: 'inherit',
-    transform: 'scale(1.1)',
-  },
-  '@media only screen and (min-width: 768px)': {
-    display: 'inline-block',
+    color: 'white',
   },
 })
 
@@ -51,7 +49,7 @@ Link.defaultProps = {
   rel: 'noopener noreferrer',
 }
 
-function Footer() {
+function Footer({ stripes }) {
   return (
     <StaticQuery
       query={graphql`
@@ -74,26 +72,46 @@ function Footer() {
       `}
       render={data => (
         <Container>
-          <div css={{ position: 'absolute', left: 8 }}>
-            <Link href={`${data.site.siteMetadata.repository.url}/stargazers`}>
-              <strong css={{ marginRight: 6 }}>
-                {data.github.repository.stargazers.totalCount}
-              </strong>
-              <FaStar css={{ position: 'relative', top: 1 }} size={16} />
-            </Link>
-          </div>
-          <Message>
-            Developed with <Heart /> by the GatsbyJS team.
-          </Message>
-          <div css={{ position: 'absolute', right: 8 }}>
-            <Link href={data.site.siteMetadata.repository.url}>
-              <FaGithub size={24} />
-            </Link>
-          </div>
+          {stripes && <Airmail />}
+          <Contents>
+            <List>
+              <ListItem css={{ marginLeft: 0 }}>
+                <Link href={data.site.siteMetadata.repository.url}>
+                  <FaGithub
+                    size={16}
+                    css={{
+                      marginRight: '0.25rem',
+                      position: 'relative',
+                      top: 2,
+                    }}
+                  />
+                  <span>Source on Github</span>
+                </Link>
+              </ListItem>
+              <ListItem>
+                <Link
+                  href={`${data.site.siteMetadata.repository.url}/stargazers`}
+                >
+                  <strong css={{ marginRight: 2 }}>
+                    {data.github.repository.stargazers.totalCount}
+                  </strong>
+                  <FaStar css={{ position: 'relative', top: 2 }} size={16} />
+                </Link>
+              </ListItem>
+            </List>
+          </Contents>
         </Container>
       )}
     />
   )
+}
+
+Footer.propTypes = {
+  stripes: PropTypes.bool,
+}
+
+Footer.defaultProps = {
+  stripes: false,
 }
 
 export default Footer

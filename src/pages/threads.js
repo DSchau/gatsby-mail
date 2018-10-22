@@ -61,7 +61,7 @@ function Threads({ location }) {
                 <>
                   <Meta title={messages[0].payload.subject} />
                   {messages.map(message => (
-                    <Message key={message.id} {...message} />
+                    <Message key={message.id} stripe={true} {...message} />
                   ))}
                 </>
               )}

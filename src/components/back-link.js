@@ -13,9 +13,9 @@ const Link = styled(GatsbyLink)(({ theme }) => ({
   },
 }))
 
-function BackLink({ children, to }) {
+function BackLink({ children, className, to }) {
   return (
-    <Link to={to}>
+    <Link className={className} to={to}>
       <FaArrowLeft css={{ marginRight: '0.5rem' }} />
       {children}
     </Link>

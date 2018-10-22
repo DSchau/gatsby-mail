@@ -2,23 +2,36 @@ import React from 'react'
 import styled from 'react-emotion'
 import PropTypes from 'prop-types'
 
-let Link = styled.button(({ theme }) => ({
-  backgroundColor: theme.accent,
+import getZIndex from '../style/z-index'
+
+const BUTTON_SIZE = 48
+
+let Button = styled.button(({ disabled, theme }) => ({
+  backgroundColor: theme.button,
   color: `white`,
-  padding: '1rem',
-  minHeight: 48,
-  minWidth: 48,
-  borderRadius: 48,
+  display: 'block',
+  height: BUTTON_SIZE,
+  width: BUTTON_SIZE,
+  borderRadius: BUTTON_SIZE,
+  fontSize: 24,
+  textAlign: 'center',
+  lineHeight: `${BUTTON_SIZE}px`,
+  zIndex: getZIndex('button'),
+  ...(disabled
+    ? {
+        backgroundColor: 'red',
+      }
+    : {}),
 }))
 
-function FloatingButton({ as, children, to, onClick }) {
+function FloatingButton({ as, children, className, disabled, to, onClick }) {
   if (as) {
-    Link = Link.withComponent(as)
+    Button = Button.withComponent(as)
   }
   return (
-    <Link to={to} onClick={onClick}>
+    <Button to={to} className={className} disabled={disabled} onClick={onClick}>
       {children}
-    </Link>
+    </Button>
   )
 }
 
@@ -26,7 +39,12 @@ FloatingButton.propTypes = {
   as: PropTypes.any,
   children: PropTypes.node,
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
   to: PropTypes.string,
+}
+
+FloatingButton.defaultProps = {
+  disabled: false,
 }
 
 export default FloatingButton

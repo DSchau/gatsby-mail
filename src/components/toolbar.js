@@ -2,43 +2,24 @@ import React from 'react'
 import styled from 'react-emotion'
 import PropTypes from 'prop-types'
 import { FaChevronLeft } from 'react-icons/fa'
-import { Link } from 'gatsby'
 
-const Container = styled.div(
-  {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '0.5rem',
-    margin: '0.5rem 0',
-    minHeight: 48,
-  },
-  ({ theme }) => ({
-    border: `1px solid ${theme.inverted.color}`,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-  })
-)
+import BackLink from './back-link'
 
-const LinkButton = styled(Link)(({ theme }) => ({
-  display: 'inline-block',
-  padding: '0.5rem 1rem',
-  color: theme.color,
-  fontSize: 18,
-  transition: '175ms cubic-bezier(.17, .67, .83, .67)',
-  ':hover': {
-    backgroundColor: theme.inverted.color,
-  },
-  ':active': {
-    backgroundColor: theme.inverted.bgLight,
-  },
-}))
+const Container = styled.div({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '0.25rem',
+  margin: '0.25rem 0',
+  minHeight: 48,
+})
 
 function Toolbar({ className }) {
   return (
     <Container className={className}>
-      <LinkButton to="/" title="Back to inbox">
-        <FaChevronLeft />
-      </LinkButton>
+      <BackLink to="/" title="Back to inbox">
+        Inbox
+      </BackLink>
     </Container>
   )
 }

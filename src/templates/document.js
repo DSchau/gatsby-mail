@@ -8,7 +8,7 @@ import Meta from '../components/meta'
 const Content = styled.div(
   {
     margin: '0 auto',
-    padding: '1rem',
+    padding: '0.5rem 1rem',
     fontSize: 14,
     p: {
       lineHeight: 1.4,
@@ -21,6 +21,9 @@ const Content = styled.div(
     a: {
       color: theme.linkAccent,
     },
+    'h1, h2, h3, h4, h5, h6': {
+      color: theme.name === 'dark' ? theme.link : theme.accent,
+    },
   })
 )
 
@@ -31,7 +34,9 @@ function Document({ data }) {
   return (
     <>
       <Meta title={frontmatter.title} />
-      <BackLink to="/">Home</BackLink>
+      <BackLink css={{ padding: '0.5rem' }} to="/">
+        Home
+      </BackLink>
       <Content dangerouslySetInnerHTML={{ __html: html }} />
     </>
   )
