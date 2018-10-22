@@ -2,7 +2,7 @@ import React from 'react'
 import { gql } from 'apollo-boost'
 import { Query } from 'react-apollo'
 import styled from 'react-emotion'
-import { FaPlus } from 'react-icons/fa'
+import { MdAdd } from 'react-icons/md'
 import { Link as GatsbyLink } from 'gatsby'
 
 import FloatingButton from '../components/floating-button'
@@ -58,7 +58,7 @@ const IndexPage = () => (
         )}
         <BottomRight>
           <FloatingButton as={GatsbyLink} to="/new">
-            <FaPlus />
+            <MdAdd />
           </FloatingButton>
         </BottomRight>
       </Container>
