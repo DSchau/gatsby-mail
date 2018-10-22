@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { cx } from 'react-emotion'
 import PropTypes from 'prop-types'
-import { FaArrowRight } from 'react-icons/fa'
+import { MdArrowForward } from 'react-icons/md'
 import format from 'date-fns/format'
 
 import AirMail from './air-mail'
@@ -116,7 +116,7 @@ function Message({ className, showAction, showTo, stripe, payload }) {
             <span css={{ fontSize: 12, marginRight: '0.5rem' }}>
               {format(date, 'MMM DD')}
             </span>
-            <FaArrowRight css={{ position: 'relative', top: 2 }} />
+            <MdArrowForward css={{ position: 'relative', top: 2 }} />
           </Action>
         )}
       </Content>
