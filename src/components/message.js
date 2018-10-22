@@ -49,7 +49,7 @@ const To = styled.h2(
     textOverflow: 'ellipsis',
   },
   ({ theme }) => ({
-    color: theme.color,
+    color: theme.colorCalm,
   })
 )
 
@@ -57,10 +57,15 @@ const From = styled(To)()
 
 const Date = styled(To)()
 
-const Subject = styled(To)({
-  fontSize: 16,
-  fontWeight: 'bold',
-})
+const Subject = styled(To)(
+  {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  ({ theme }) => ({
+    color: theme.color,
+  })
+)
 
 const MessageContent = styled.div({
   padding: '0.25rem 1rem',
