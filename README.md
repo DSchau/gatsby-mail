@@ -17,6 +17,6 @@ A proof of concept application that demonstrates a few concepts, namely:
 ## 🚀 Set up
 
 - `yarn` or `npm install`
-- Request a [Github token](https://github.com/settings/tokens) give 'repo' full access to the token
+- Request a [Github token](https://github.com/settings/tokens) and give `repo` full access to the token
 - `cat .env.sample > .env.development` then paste in your access token from gitub
 - `yarn develop` or `npm run develop`
