@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import { gql } from 'apollo-boost'
 import { Mutation } from 'react-apollo'
 import { MdSend } from 'react-icons/md'

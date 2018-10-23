@@ -20,10 +20,6 @@ const Container = styled.div(
   })
 )
 
-const Content = styled.div({
-  padding: '1rem',
-})
-
 const Title = styled.h1({
   fontSize: 28,
   fontWeight: 400,
