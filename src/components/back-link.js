@@ -5,6 +5,7 @@ import { MdArrowBack } from 'react-icons/md'
 
 const Link = styled(GatsbyLink)(({ theme }) => ({
   color: theme.link,
+  cursor: 'pointer',
   fontSize: 14,
   textDecoration: 'none',
   transition: '175ms ease-in-out',
