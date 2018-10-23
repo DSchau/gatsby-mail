@@ -34,6 +34,8 @@ export class AuthenticationProvider extends Component {
     return async () => {
       await this.auth.logout(service)
 
+      window.localStorage.clear()
+
       this.setState({
         authenticated: false,
       })

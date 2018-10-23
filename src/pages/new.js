@@ -269,6 +269,7 @@ class NewMessage extends Component {
                         <FloatingButton
                           css={{ backgroundColor: '#3FA9F5', fontSize: 20 }}
                           disabled={!user}
+                          type="submit"
                         >
                           <MdSend />
                         </FloatingButton>
