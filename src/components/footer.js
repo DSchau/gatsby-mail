@@ -82,7 +82,7 @@ function Footer({ stripes }) {
                     size={16}
                     css={{
                       marginRight: '0.5rem',
-                      verticalAlign: 'bottom',
+                      verticalAlign: 'sub',
                     }}
                   />
                   <span>Source on Github</span>
@@ -95,7 +95,7 @@ function Footer({ stripes }) {
                   <strong css={{ fontWeight: 'normal', marginRight: 2 }}>
                     {data.github.repository.stargazers.totalCount}
                   </strong>
-                  <MdStar css={{ verticalAlign: 'bottom' }} size={16} />
+                  <MdStar css={{ verticalAlign: 'sub' }} size={16} />
                 </Link>
               </ListItem>
             </List>
