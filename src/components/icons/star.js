@@ -19,7 +19,7 @@ const Star = ({ size, height, width, fill, opacity, ...rest }) => (
 
 Star.defaultProps = {
   fill: '#639',
-  opacity: 0.25,
+  opacity: 0.15,
   width: 8,
   height: 8,
 }

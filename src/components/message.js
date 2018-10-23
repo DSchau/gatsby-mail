@@ -34,9 +34,7 @@ const Details = styled.div(
   },
   ({ showAction, theme }) => ({
     ...(showAction
-      ? {
-          paddingRight: 72,
-        }
+      ? {}
       : {
           backgroundColor: theme.name === 'dark' ? theme.bgDark : theme.bgLight,
         }),
@@ -45,10 +43,11 @@ const Details = styled.div(
 
 const To = styled.h2(
   {
-    margin: '0.25rem 0',
+    margin: 0,
     padding: 0,
     fontFamily: SYSTEM_FONTS.join(`,`),
     fontSize: 14,
+    lineHeight: 1.5,
     fontWeight: 'normal',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -59,7 +58,13 @@ const To = styled.h2(
   })
 )
 
-const From = styled(To)()
+const From = styled(To)({}, ({ showAction, theme }) => ({
+  ...(showAction
+    ? {}
+    : {
+        paddingRight: 72,
+      }),
+}))
 
 const Date = styled(To)()
 
@@ -68,8 +73,9 @@ const Subject = styled(To)(
     fontSize: 16,
     fontWeight: 'bold',
   },
-  ({ theme }) => ({
+  ({ showAction, theme }) => ({
     color: theme.color,
+    ...(showAction ? {} : { paddingRight: 16 }),
   })
 )
 
@@ -82,7 +88,7 @@ const MessageContent = styled.div({
 const Action = styled.div(
   {
     position: `absolute`,
-    top: '50%',
+    top: '0.85rem',
     right: 8,
     transform: 'translateY(-50%)',
   },
@@ -127,7 +133,7 @@ function Message({ className, showAction, showTo, stripe, payload }) {
             <span css={{ fontSize: 12, marginRight: '0.5rem' }}>
               {format(date, 'MMM DD')}
             </span>
-            <MdArrowForward css={{ position: 'relative', top: 2 }} />
+            <MdArrowForward css={{ verticalAlign: 'sub' }} />
           </Action>
         )}
       </Content>
