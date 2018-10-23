@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
-import { FaGithub, FaStar } from 'react-icons/fa'
+import { FaGithub } from 'react-icons/fa'
+import { MdStar } from 'react-icons/md'
 import { graphql, StaticQuery } from 'gatsby'
 import PropTypes from 'prop-types'
 
@@ -80,9 +81,8 @@ function Footer({ stripes }) {
                   <FaGithub
                     size={16}
                     css={{
-                      marginRight: '0.25rem',
-                      position: 'relative',
-                      top: 2,
+                      marginRight: '0.5rem',
+                      verticalAlign: 'sub',
                     }}
                   />
                   <span>Source on Github</span>
@@ -92,10 +92,10 @@ function Footer({ stripes }) {
                 <Link
                   href={`${data.site.siteMetadata.repository.url}/stargazers`}
                 >
-                  <strong css={{ marginRight: 2 }}>
+                  <strong css={{ fontWeight: 'normal', marginRight: 2 }}>
                     {data.github.repository.stargazers.totalCount}
                   </strong>
-                  <FaStar css={{ position: 'relative', top: 2 }} size={16} />
+                  <MdStar css={{ verticalAlign: 'sub' }} size={16} />
                 </Link>
               </ListItem>
             </List>

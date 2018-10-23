@@ -7,16 +7,20 @@ import getZIndex from '../style/z-index'
 const BUTTON_SIZE = 48
 
 let Button = styled.button(({ disabled, theme }) => ({
+  alignItems: `center`,
   backgroundColor: theme.button,
   color: `white`,
-  display: 'block',
+  display: 'flex',
   height: BUTTON_SIZE,
   width: BUTTON_SIZE,
   borderRadius: BUTTON_SIZE,
-  fontSize: 24,
+  fontSize: 28,
   textAlign: 'center',
   lineHeight: `${BUTTON_SIZE}px`,
   zIndex: getZIndex('button'),
+  '& svg': {
+    margin: `0 auto`,
+  },
   ...(disabled
     ? {
         backgroundColor: 'red',

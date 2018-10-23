@@ -1,17 +1,24 @@
 import React from 'react'
 import styled, { cx } from 'react-emotion'
 import PropTypes from 'prop-types'
-import { FaArrowRight } from 'react-icons/fa'
+import { MdArrowForward } from 'react-icons/md'
 import format from 'date-fns/format'
 
 import AirMail from './air-mail'
 import decodePayload from '../util/parse-payload'
+import { SYSTEM_FONTS } from '../util/typography'
 
 const Container = styled.div(({ theme }) => ({
   backgroundColor: theme.bg,
-  borderBottom: `1px solid ${theme.inverted.link}`,
+  borderBottomColor: theme.cardBorder,
+  borderBottomStyle: `solid`,
+  borderBottomWidth: 1,
   color: theme.inverted.bg,
   padding: '0.5rem 0',
+  transition: '175ms cubic-bezier(.17, .67, .83, .67)',
+  ':hover': {
+    backgroundColor: theme.cardBorder,
+  },
 }))
 
 const Content = styled.div({
@@ -40,6 +47,7 @@ const To = styled.h2(
   {
     margin: '0.25rem 0',
     padding: 0,
+    fontFamily: SYSTEM_FONTS.join(`,`),
     fontSize: 14,
     fontWeight: 'normal',
     whiteSpace: 'nowrap',
@@ -47,7 +55,7 @@ const To = styled.h2(
     textOverflow: 'ellipsis',
   },
   ({ theme }) => ({
-    color: theme.color,
+    color: theme.colorCalm,
   })
 )
 
@@ -55,10 +63,15 @@ const From = styled(To)()
 
 const Date = styled(To)()
 
-const Subject = styled(To)({
-  fontSize: 16,
-  fontWeight: 'bold',
-})
+const Subject = styled(To)(
+  {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  ({ theme }) => ({
+    color: theme.color,
+  })
+)
 
 const MessageContent = styled.div({
   padding: '0.25rem 1rem',
@@ -114,7 +127,7 @@ function Message({ className, showAction, showTo, stripe, payload }) {
             <span css={{ fontSize: 12, marginRight: '0.5rem' }}>
               {format(date, 'MMM DD')}
             </span>
-            <FaArrowRight css={{ position: 'relative', top: 2 }} />
+            <MdArrowForward css={{ position: 'relative', top: 2 }} />
           </Action>
         )}
       </Content>

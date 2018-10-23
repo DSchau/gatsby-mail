@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import { gql } from 'apollo-boost'
 import { Mutation } from 'react-apollo'
 import { MdSend } from 'react-icons/md'
@@ -267,7 +267,7 @@ class NewMessage extends Component {
                       </Label>
                       <BottomRight>
                         <FloatingButton
-                          css={{ backgroundColor: '#3FA9F5' }}
+                          css={{ backgroundColor: '#3FA9F5', fontSize: 20 }}
                           disabled={!user}
                         >
                           <MdSend />

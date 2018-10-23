@@ -2,11 +2,12 @@ import React from 'react'
 import { gql } from 'apollo-boost'
 import { Query } from 'react-apollo'
 import styled from 'react-emotion'
-import { FaPlus } from 'react-icons/fa'
+import { MdAdd } from 'react-icons/md'
 import { Link as GatsbyLink } from 'gatsby'
 
 import FloatingButton from '../components/floating-button'
 import MessageList from '../components/message-list'
+import Spinner from '../components/spinner'
 
 import getZIndex from '../style/z-index'
 
@@ -49,7 +50,11 @@ const IndexPage = () => (
     `}
     children={({ loading, data }) => (
       <Container>
-        {loading && <p>Loading mail&hellip;</p>}
+        {loading && (
+          <p css={{ margin: 20 }}>
+            <Spinner /> Loading mail&hellip;
+          </p>
+        )}
         {data.google && (
           <MessageList
             css={{ paddingBottom: 24 }}
@@ -58,7 +63,7 @@ const IndexPage = () => (
         )}
         <BottomRight>
           <FloatingButton as={GatsbyLink} to="/new">
-            <FaPlus />
+            <MdAdd />
           </FloatingButton>
         </BottomRight>
       </Container>

@@ -9,7 +9,7 @@ const Container = styled.ul({
   display: 'flex',
   flexDirection: 'column',
   margin: 0,
-  padding: '0.5rem 0',
+  padding: 0,
 })
 
 const Item = styled.li({

@@ -13,18 +13,21 @@ import getZIndex from '../style/z-index'
 const Container = styled.header(({ theme }) => ({
   flex: `0 0 auto`,
   display: `flex`,
-  alignItems: `flex-end`,
+  alignItems: `center`,
   justifyContent: `space-between`,
   backgroundColor: theme.bg,
   color: theme.bg,
-  padding: `1rem`,
+  padding: 20,
   borderBottom: `1px solid ${theme.inverted.link}`,
+  height: 64,
   zIndex: getZIndex('header'),
 }))
 
 const StyledLink = styled(Link)(({ theme }) => ({
   color: theme.color,
-  fontSize: 24,
+  display: 'flex',
+  alignItems: 'center',
+  fontSize: 20,
   textDecorationSkip: 'ink',
   textDecoration: 'none',
   ':hover': {
@@ -51,7 +54,7 @@ const Header = ({ siteTitle }) => (
         <h1 style={{ margin: 0 }}>
           <StyledLink to="/">
             <GatsbyLogo
-              css={{ marginRight: '0.35rem', position: 'relative', top: 1 }}
+              css={{ marginRight: '0.5rem', position: 'relative', top: -2 }}
             />
             {siteTitle
               .split('Gatsby')

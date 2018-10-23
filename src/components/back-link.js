@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
 import { Link as GatsbyLink } from 'gatsby'
-import { FaArrowLeft } from 'react-icons/fa'
+import { MdArrowBack } from 'react-icons/md'
 
 const Link = styled(GatsbyLink)(({ theme }) => ({
   color: theme.link,
@@ -16,7 +16,7 @@ const Link = styled(GatsbyLink)(({ theme }) => ({
 function BackLink({ children, className, to }) {
   return (
     <Link className={className} to={to}>
-      <FaArrowLeft css={{ marginRight: '0.5rem' }} />
+      <MdArrowBack css={{ marginRight: '0.5rem' }} />
       {children}
     </Link>
   )

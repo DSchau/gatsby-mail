@@ -5,6 +5,7 @@ import { Query } from 'react-apollo'
 import Message from '../components/message'
 import Meta from '../components/meta'
 import Toolbar from '../components/toolbar'
+import Spinner from '../components/spinner'
 
 function Wrapper({ children, id }) {
   return (
@@ -56,7 +57,12 @@ function Threads({ location }) {
               : null
           return (
             <>
-              {loading && <p>Fetching message details&hellip;</p>}
+              {loading && (
+                <p css={{ margin: 20 }}>
+                  <Spinner />
+                  Fetching message details&hellip;
+                </p>
+              )}
               {messages && (
                 <>
                   <Meta title={messages[0].payload.subject} />

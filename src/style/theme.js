@@ -8,11 +8,12 @@ export const DARK = {
   bgDark: '#442266',
   bgLight: `#666`,
   button: '#2FCC49',
+  cardBorder: '#33194C',
   color: `#ddd`,
+  colorCalm: '#B0A5BD',
   footerLink: '#8953A3',
   link: '#E0D6EB',
   linkAccent: '#FFDF37',
-  name: 'dark',
 }
 
 export const LIGHT = {
@@ -23,9 +24,10 @@ export const LIGHT = {
   bgLight: `#fff`,
   bgDark: '#442266',
   button: '#2FCC49',
+  cardBorder: '#F5F3F7',
   color: `#444`,
+  colorCalm: '#828282',
   footerLink: '#8953A3',
   link: BASE_COLOR,
   linkAccent: BASE_COLOR,
-  name: 'light',
 }

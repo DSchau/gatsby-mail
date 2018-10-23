@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'react-emotion'
 import PropTypes from 'prop-types'
-import { FaChevronLeft } from 'react-icons/fa'
 
 import BackLink from './back-link'
 
