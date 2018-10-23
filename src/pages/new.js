@@ -267,7 +267,7 @@ class NewMessage extends Component {
                       </Label>
                       <BottomRight>
                         <FloatingButton
-                          css={{ backgroundColor: '#3FA9F5' }}
+                          css={{ backgroundColor: '#3FA9F5', fontSize: 20 }}
                           disabled={!user}
                         >
                           <MdSend />
