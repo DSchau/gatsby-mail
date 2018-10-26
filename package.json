@@ -1,8 +1,9 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "gatsby-mail",
+  "description": "A Gatsby e-mail application",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Dustin Schau <dustin@gatsbyjs.com> (https://dustinschau.com)",
+  "private": true,
   "dependencies": {
     "apollo-boost": "^0.1.16",
     "autosize": "^4.0.2",
@@ -24,9 +25,9 @@
     "normalize.css": "^8.0.0",
     "onegraph-auth": "^0.2.16",
     "query-string": "^6.2.0",
-    "react": "^16.5.1",
+    "react": "^16.6.0",
     "react-apollo": "^2.2.4",
-    "react-dom": "^16.5.1",
+    "react-dom": "^16.6.0",
     "react-emotion": "^9.2.12",
     "react-helmet": "^5.2.0",
     "react-icons": "^3.2.1",
@@ -35,13 +36,18 @@
     "typography-theme-grand-view": "^0.15.10"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "mail",
+    "app",
+    "application",
+    "onegraph"
   ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write '**/*.js'",
+    "start": "npm run develop",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

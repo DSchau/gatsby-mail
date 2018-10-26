@@ -42,13 +42,13 @@ class Layout extends Component {
             location.pathname
           )
           return (
-            <Theme.Provider>
-              <Authentication.Provider>
+            <Theme>
+              <Authentication>
                 <Meta meta={meta} title={title} />
                 <Container>
                   <Header siteTitle={data.site.siteMetadata.title} />
                   {useAuthentication ? (
-                    <Authentication>
+                    <Authentication.Consumer>
                       {({ authenticated }) => (
                         <Content
                           center={!authenticated || isCentered}
@@ -62,14 +62,14 @@ class Layout extends Component {
                           )}
                         </Content>
                       )}
-                    </Authentication>
+                    </Authentication.Consumer>
                   ) : (
                     <Content decoration={true}>{children}</Content>
                   )}
                   <Footer stripes={location.pathname === `/`} />
                 </Container>
-              </Authentication.Provider>
-            </Theme.Provider>
+              </Authentication>
+            </Theme>
           )
         }}
       />

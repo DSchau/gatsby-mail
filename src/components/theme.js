@@ -63,6 +63,6 @@ class Theme extends Component {
   }
 }
 
-Consumer.Provider = Theme
+Theme.Consumer = Consumer
 
-export default Consumer
+export default Theme

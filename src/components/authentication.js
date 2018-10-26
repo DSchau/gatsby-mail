@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 
 import getAuth from '../util/authentication'
 
-const { Provider, Consumer } = React.createContext(`authentication`)
+const { Consumer, Provider } = React.createContext(`authentication`)
 
-export class AuthenticationProvider extends Component {
+class AuthenticationProvider extends Component {
   state = {}
   auth = undefined
 
@@ -57,6 +57,6 @@ export class AuthenticationProvider extends Component {
   }
 }
 
-Consumer.Provider = AuthenticationProvider
+AuthenticationProvider.Consumer = Consumer
 
-export default Consumer
+export default AuthenticationProvider

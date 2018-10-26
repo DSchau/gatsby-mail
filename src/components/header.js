@@ -48,7 +48,7 @@ const IconButton = styled.button(
 )
 
 const Header = ({ siteTitle }) => (
-  <Theme>
+  <Theme.Consumer>
     {({ toggleTheme, theme }) => (
       <Container>
         <h1 style={{ margin: 0 }}>
@@ -71,7 +71,7 @@ const Header = ({ siteTitle }) => (
           >
             <ThemeToggle color={theme.link} size={20} />
           </IconButton>
-          <Authentication>
+          <Authentication.Consumer>
             {({ authenticated, logout }) => (
               <>
                 {authenticated ? (
@@ -83,11 +83,11 @@ const Header = ({ siteTitle }) => (
                 ) : null}
               </>
             )}
-          </Authentication>
+          </Authentication.Consumer>
         </div>
       </Container>
     )}
-  </Theme>
+  </Theme.Consumer>
 )
 
 Header.propTypes = {

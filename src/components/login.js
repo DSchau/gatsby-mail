@@ -50,7 +50,7 @@ const Message = styled.h4(
 function Login() {
   return (
     <Container>
-      <Authentication>
+      <Authentication.Consumer>
         {({ authenticated, login }) => {
           if (authenticated) {
             return null
@@ -74,7 +74,7 @@ function Login() {
             </>
           )
         }}
-      </Authentication>
+      </Authentication.Consumer>
       <LoginLinks />
     </Container>
   )
