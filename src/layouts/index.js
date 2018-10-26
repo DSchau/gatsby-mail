@@ -42,8 +42,8 @@ class Layout extends Component {
             location.pathname
           )
           return (
-            <Theme>
-              <Authentication>
+            <Theme.Provider>
+              <Authentication.Provider>
                 <Meta meta={meta} title={title} />
                 <Container>
                   <Header siteTitle={data.site.siteMetadata.title} />
@@ -68,8 +68,8 @@ class Layout extends Component {
                   )}
                   <Footer stripes={location.pathname === `/`} />
                 </Container>
-              </Authentication>
-            </Theme>
+              </Authentication.Provider>
+            </Theme.Provider>
           )
         }}
       />

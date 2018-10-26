@@ -98,6 +98,15 @@ const Action = styled.div(
 )
 
 const formatFrom = from => (from || '').split('<').shift()
+const displayMessage = parts =>
+  (parts || [])
+    .filter(part => part.mimeType === 'text/html')
+    .map((part, index) => (
+      <MessageContent
+        key={index}
+        dangerouslySetInnerHTML={{ __html: decodePayload(part.body) }}
+      />
+    ))
 
 function Message({ className, showAction, showTo, stripe, payload }) {
   const { date, from, parts, subject, to } = payload
@@ -116,18 +125,7 @@ function Message({ className, showAction, showTo, stripe, payload }) {
           <Subject>{subject}</Subject>
           {!showAction && <Date>{date}</Date>}
         </Details>
-        {parts && (
-          <>
-            {parts
-              .filter(part => part.mimeType === 'text/html')
-              .map((part, index) => (
-                <MessageContent
-                  key={index}
-                  dangerouslySetInnerHTML={{ __html: decodePayload(part.body) }}
-                />
-              ))}
-          </>
-        )}
+        {displayMessage(parts)}
         {showAction && (
           <Action>
             <span css={{ fontSize: 12, marginRight: '0.5rem' }}>

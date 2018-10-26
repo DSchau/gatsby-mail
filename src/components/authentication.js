@@ -4,7 +4,7 @@ import getAuth from '../util/authentication'
 
 const { Consumer, Provider } = React.createContext(`authentication`)
 
-class AuthenticationProvider extends Component {
+class Authentication extends Component {
   state = {}
   auth = undefined
 
@@ -57,6 +57,7 @@ class AuthenticationProvider extends Component {
   }
 }
 
-AuthenticationProvider.Consumer = Consumer
+Authentication.Consumer = Consumer
+Authentication.Provider = Authentication
 
-export default AuthenticationProvider
+export default Authentication
