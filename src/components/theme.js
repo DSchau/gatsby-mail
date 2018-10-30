@@ -7,6 +7,9 @@ const { Consumer, Provider } = React.createContext('theme')
 
 const THEME_LS_KEY = '__gatsby_mail_theme_key__'
 
+const supportsDarkMode = () =>
+  window.matchMedia('(prefers-color-scheme: dark)').matches === true
+
 class Theme extends Component {
   constructor(props) {
     super(props)
@@ -21,6 +24,10 @@ class Theme extends Component {
     if (theme) {
       this.setState({
         theme: this.getTheme(theme),
+      })
+    } else if (supportsDarkMode()) {
+      this.setState({
+        theme: this.getTheme('dark'),
       })
     }
   }
