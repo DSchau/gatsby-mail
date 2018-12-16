@@ -1,0 +1,16 @@
+.air-mail {
+  background-color: white;
+  background-image: repeating-linear-gradient(
+    -135deg,
+    #3fa9f5 0px,
+    #3fa9f5 20px,
+    transparent 20px,
+    transparent 32px,
+    #ec1818 32px,
+    #ec1818 52px,
+    transparent 52px,
+    transparent 64px
+  );
+  height: 6px;
+  width: 100%;
+}

@@ -6,7 +6,7 @@ import Authentication from './authentication'
 import Button from './button'
 import LoginLinks from './login-links'
 
-const Container = styled.div(
+const Container = styled('div')(
   {
     display: `flex`,
     justifyContent: 'center',
@@ -20,13 +20,13 @@ const Container = styled.div(
   })
 )
 
-const Title = styled.h1({
+const Title = styled('h1')({
   fontSize: 28,
   fontWeight: 400,
   textAlign: 'left',
 })
 
-const Subtitle = styled.span(
+const Subtitle = styled('span')(
   {
     display: 'block',
     fontSize: 40,
@@ -37,7 +37,7 @@ const Subtitle = styled.span(
   })
 )
 
-const Message = styled.h4(
+const Message = styled('h4')(
   {
     fontSize: 14,
     margin: '0.5rem 0',

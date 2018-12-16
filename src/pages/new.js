@@ -24,7 +24,7 @@ const styles = {
   },
 }
 
-const Container = styled.div(
+const Container = styled('div')(
   {
     flex: 1,
     height: '100%',
@@ -36,7 +36,7 @@ const Container = styled.div(
   })
 )
 
-const Card = styled.form({
+const Card = styled('form')({
   width: `100%`,
   margin: `0 auto`,
   '@media only screen and (min-width: 768px)': {
@@ -44,7 +44,7 @@ const Card = styled.form({
   },
 })
 
-const Alert = styled.div(
+const Alert = styled('div')(
   {
     color: 'white',
     backgroundColor: '#00A388',
@@ -66,17 +66,17 @@ const Alert = styled.div(
   })
 )
 
-const Text = styled.p({
+const Text = styled('p')({
   margin: 0,
   lineHeight: 1.5,
 })
 
-const Content = styled.div({
+const Content = styled('div')({
   padding: '1rem',
   width: '100%',
 })
 
-const Label = styled.label(
+const Label = styled('label')(
   {
     display: 'block',
     fontWeight: 'bold',
@@ -87,13 +87,13 @@ const Label = styled.label(
   })
 )
 
-const Input = styled.input(styles.input)
+const Input = styled('input')(styles.input)
 
 Input.defaultProps = {
   type: 'text',
 }
 
-const BottomRight = styled.div({
+const BottomRight = styled('div')({
   position: 'fixed',
   bottom: 24,
   right: 16,

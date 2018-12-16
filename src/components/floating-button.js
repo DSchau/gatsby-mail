@@ -1,35 +1,8 @@
 import React from 'react'
-import styled, { css } from 'react-emotion'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 
-import getZIndex from '../style/z-index'
-
-const BUTTON_SIZE = 48
-
-const buttonStyles = props =>
-  css({
-    alignItems: `center`,
-    backgroundColor: props.theme.button,
-    color: `white`,
-    display: 'flex',
-    height: BUTTON_SIZE,
-    width: BUTTON_SIZE,
-    borderRadius: BUTTON_SIZE,
-    fontSize: 28,
-    textAlign: 'center',
-    lineHeight: `${BUTTON_SIZE}px`,
-    zIndex: getZIndex('button'),
-    '& svg': {
-      margin: `0 auto`,
-    },
-    ...(props.disabled
-      ? {
-          backgroundColor: 'red',
-        }
-      : {}),
-  })
-
-const Button = styled.button(buttonStyles)
+import Button from './button'
 
 function FloatingButton({
   as: Instance,
@@ -40,11 +13,11 @@ function FloatingButton({
   type,
   onClick,
 }) {
-  const Component = Instance ? styled(Instance)(buttonStyles) : Button
+  const Component = Instance || Button
   return (
     <Component
       to={to}
-      className={className}
+      className={cx('button', 'button--floating', className)}
       disabled={disabled}
       type={type}
       onClick={onClick}

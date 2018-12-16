@@ -3,14 +3,14 @@ import { graphql, Link, StaticQuery } from 'gatsby'
 import styled from 'react-emotion'
 import PropTypes from 'prop-types'
 
-const Container = styled.div()
+const Container = styled('div')()
 
-const List = styled.ul({
+const List = styled('ul')({
   margin: 0,
   padding: 0,
 })
 
-const ListItem = styled.li({
+const ListItem = styled('li')({
   display: 'block',
   fontSize: 14,
   listStyleType: 'none',

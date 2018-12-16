@@ -8,7 +8,7 @@ import AirMail from './air-mail'
 import decodePayload from '../util/parse-payload'
 import { SYSTEM_FONTS } from '../util/typography'
 
-const Container = styled.div(({ theme }) => ({
+const Container = styled('div')(({ theme }) => ({
   backgroundColor: theme.bg,
   borderBottomColor: theme.cardBorder,
   borderBottomStyle: `solid`,
@@ -21,12 +21,12 @@ const Container = styled.div(({ theme }) => ({
   },
 }))
 
-const Content = styled.div({
+const Content = styled('div')({
   display: 'flex',
   position: `relative`,
 })
 
-const Details = styled.div(
+const Details = styled('div')(
   {
     padding: '0.25rem 1rem',
     overflowX: 'hidden',
@@ -41,7 +41,7 @@ const Details = styled.div(
   })
 )
 
-const To = styled.h2(
+const To = styled('h2')(
   {
     margin: 0,
     padding: 0,
@@ -58,7 +58,7 @@ const To = styled.h2(
   })
 )
 
-const From = styled(To)({}, ({ showAction, theme }) => ({
+const From = styled(To)({}, ({ showAction }) => ({
   ...(showAction
     ? {}
     : {
@@ -79,13 +79,13 @@ const Subject = styled(To)(
   })
 )
 
-const MessageContent = styled.div({
+const MessageContent = styled('div')({
   padding: '0.25rem 1rem',
   lineHeight: 1.5,
   margin: '1rem 0',
 })
 
-const Action = styled.div(
+const Action = styled('div')(
   {
     position: `absolute`,
     top: '0.85rem',

@@ -11,10 +11,11 @@ import Footer from '../components/footer'
 import Meta from '../components/meta'
 import Theme from '../components/theme'
 
+import '../style/main.scss'
 import '../style/global'
 import 'normalize.css'
 
-const Container = styled.div({
+const Container = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   position: 'relative',

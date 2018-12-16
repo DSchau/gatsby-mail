@@ -1,49 +1,41 @@
 import React from 'react'
-import styled from 'react-emotion'
+import cx from 'classnames'
 import { FaGithub } from 'react-icons/fa'
 import { MdStar } from 'react-icons/md'
 import { graphql, StaticQuery } from 'gatsby'
 import PropTypes from 'prop-types'
 
 import Airmail from './air-mail'
-import getZIndex from '../style/z-index'
 
-const Container = styled.footer(
-  {
-    flex: '0 0 auto',
-    zIndex: getZIndex('footer'),
-  },
-  ({ theme }) => ({
-    backgroundColor: theme.bgDark,
-    color: theme.footerLink,
-  })
+const Container = ({ className, ...rest }) => (
+  <footer className={cx('footer', className)} {...rest}>
+    {rest.children}
+  </footer>
 )
 
-const Contents = styled.div({
-  padding: `0.75rem 1rem`,
-})
+const Contents = ({ className, ...rest }) => (
+  <div className={cx('footer--contents', className)} {...rest}>
+    {rest.children}
+  </div>
+)
 
-const List = styled.ul({
-  margin: 0,
-  padding: 0,
-})
+const List = props => (
+  <ul className={cx('footer--list')} {...props}>
+    {props.children}
+  </ul>
+)
 
-const ListItem = styled.li({
-  display: 'inline-block',
-  margin: '0.25rem 0.5rem',
-  listStyleType: 'none',
-})
+const ListItem = ({ className, ...rest }) => (
+  <li className={cx('footer--list--list-item', className)} {...rest}>
+    {rest.children}
+  </li>
+)
 
-const Link = styled.a({
-  color: 'inherit',
-  fontWeight: 'bold',
-  transition: '175ms cubic-bezier(.17, .67, .83, .67)',
-  textDecoration: 'none',
-  fontSize: 14,
-  ':hover': {
-    color: 'white',
-  },
-})
+const Link = props => (
+  <a className={cx('footer--link')} {...props}>
+    {props.children}
+  </a>
+)
 
 Link.defaultProps = {
   target: '_blank',

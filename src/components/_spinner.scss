@@ -1,0 +1,55 @@
+$SPINNER_LOADER_SIZE: 20px;
+
+@keyframes scale {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.spinner {
+  display: inline-block;
+  margin: 10px;
+
+  &--container {
+    display: inline-block;
+    width: $SPINNER_LOADER_SIZE;
+    height: $SPINNER_LOADER_SIZE;
+    margin-right: 0.25rem;
+    position: relative;
+    top: 4px;
+    color: $TEXT_COLOR_LIGHT;
+  }
+
+  &--ball {
+    background-color: $ACCENT_LIGHT;
+    border-radius: 100%;
+    animation-fill-mode: both;
+    position: absolute;
+    opacity: 0;
+    margin: 0;
+    width: $SPINNER_LOADER_SIZE;
+    height: $SPINNER_LOADER_SIZE;
+    animation: scale 1s 0s linear infinite;
+    &:nth-child(2) {
+      animation-delay: -0.8s;
+    }
+    &:nth-child(3) {
+      animation-delay: -0.4s;
+    }
+    .dark & {
+      background-color: $TEXT_COLOR_DARK;
+    }
+  }
+
+  .dark & {
+    color: $TEXT_COLOR_DARK;
+  }
+}

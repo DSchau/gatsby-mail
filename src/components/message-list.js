@@ -5,14 +5,14 @@ import PropTypes from 'prop-types'
 
 import Message from './message'
 
-const Container = styled.ul({
+const Container = styled('ul')({
   display: 'flex',
   flexDirection: 'column',
   margin: 0,
   padding: 0,
 })
 
-const Item = styled.li({
+const Item = styled('li')({
   listStyleType: 'none',
   margin: 0,
   padding: 0,

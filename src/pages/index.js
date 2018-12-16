@@ -11,11 +11,11 @@ import Spinner from '../components/spinner'
 
 import getZIndex from '../style/z-index'
 
-const Container = styled.div({
+const Container = styled('div')({
   zIndex: getZIndex('button'),
 })
 
-const BottomRight = styled.div({
+const BottomRight = styled('div')({
   position: 'fixed',
   bottom: 24,
   right: 16,
@@ -50,11 +50,7 @@ const IndexPage = () => (
     `}
     children={({ loading, data }) => (
       <Container>
-        {loading && (
-          <p css={{ margin: 20 }}>
-            <Spinner /> Loading mail&hellip;
-          </p>
-        )}
+        {loading && <Spinner> Loading mail&hellip;</Spinner>}
         {data.google && (
           <MessageList
             css={{ paddingBottom: 24 }}

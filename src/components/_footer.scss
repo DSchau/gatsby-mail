@@ -1,0 +1,32 @@
+.footer {
+  flex: 0 0 auto;
+  z-index: 2;
+  background-color: $BG_LIGHT_DARK;
+  color: $FOOTER_LINK_LIGHT;
+  .dark & {
+    background-color: $BG_DARK_DARK;
+    color: $FOOTER_LINK_DARK;
+  }
+  &--contents {
+    padding: 0.75rem 1rem;
+  }
+  &--list {
+    margin: 0;
+    padding: 0;
+    &--list-item {
+      display: inline-block;
+      margin: 0.25rem 0.5rem;
+      list-style-type: none;
+    }
+  }
+  &--link {
+    color: inherit;
+    font-weight: bold;
+    transition: 175ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    text-decoration: none;
+    font-size: 14px;
+    &:hover {
+      color: white;
+    }
+  }
+}

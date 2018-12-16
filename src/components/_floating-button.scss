@@ -1,0 +1,20 @@
+$BUTTON_SIZE: 48px;
+
+.button {
+  &--floating {
+    display: flex;
+    height: $BUTTON_SIZE;
+    width: $BUTTON_SIZE;
+    font-size: 28px;
+    text-align: center;
+    line-height: $BUTTON_SIZE;
+    z-index: 3;
+    align-items: center;
+    background-color: $BUTTON_LIGHT;
+    border-radius: 100%;
+    > svg {
+      margin: 0 auto;
+      transform: scale(2);
+    }
+  }
+}

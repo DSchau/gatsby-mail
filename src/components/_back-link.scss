@@ -1,0 +1,10 @@
+.link--back {
+  color: $LINK_LIGHT;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 175ms ease-in-out;
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -24,6 +24,7 @@ module.exports = {
         icon: 'content/images/gatsby-icon.png',
       },
     },
+    'gatsby-plugin-sass',
     'gatsby-plugin-emotion',
     'gatsby-plugin-offline',
     'gatsby-plugin-layout',

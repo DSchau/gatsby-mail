@@ -1,19 +1,8 @@
-import styled from 'react-emotion'
+import React from 'react'
+import cx from 'classnames'
 
-import { HEADER_FONTS } from '../util/typography'
-
-const Button = styled.button(
-  {
-    padding: `0.5rem 1rem`,
-    border: `none`,
-    color: `white`,
-    cursor: `pointer`,
-    fontFamily: HEADER_FONTS.join(','),
-    fontSize: 18,
-  },
-  ({ theme }) => ({
-    backgroundColor: theme.accent,
-  })
+export default ({ className, children, ...rest }) => (
+  <button className={cx('button', className)} {...rest}>
+    {children}
+  </button>
 )
-
-export default Button

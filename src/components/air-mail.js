@@ -1,10 +1,7 @@
-import styled from 'react-emotion'
+import React from 'react'
 
-const Airmail = styled.div({
-  height: 6,
-  backgroundColor: 'white',
-  backgroundImage: `repeating-linear-gradient(-135deg, #3FA9F5 0px, #3FA9F5 20px, transparent 20px, transparent 32px, #EC1818 32px, #EC1818 52px, transparent 52px, transparent 64px)`,
-  width: '100%',
-})
-
-export default Airmail
+export default props => (
+  <div className="air-mail" {...props}>
+    {props.children}
+  </div>
+)

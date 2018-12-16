@@ -1,0 +1,43 @@
+.header {
+  @include flex-center(space-between);
+  flex: 0 0 auto;
+  background-color: $BG_LIGHT;
+  border-bottom: 1px solid $BG_DARK;
+  padding: 20px;
+  height: 64px;
+  z-index: 2;
+
+  &--link {
+    @include flex-center(center);
+    color: $TEXT_COLOR_LIGHT;
+    font-size: 20px;
+    text-decoration-skip: ink;
+    text-decoration: none;
+    &:hover {
+      color: $TEXT_COLOR_LIGHT;
+      text-decoration: underline;
+    }
+    .dark & {
+      color: $TEXT_COLOR_DARK;
+      &:hover {
+        color: $TEXT_COLOR_DARK;
+      }
+    }
+  }
+
+  &--button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $BG_DARK;
+
+    .dark & {
+      color: $BG_LIGHT;
+    }
+  }
+
+  .dark & {
+    background-color: $BG_DARK;
+    border-color: $BG_LIGHT;
+  }
+}

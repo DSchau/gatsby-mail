@@ -57,12 +57,7 @@ function Threads({ location }) {
               : null
           return (
             <>
-              {loading && (
-                <p css={{ margin: 20 }}>
-                  <Spinner />
-                  Fetching message details&hellip;
-                </p>
-              )}
+              {loading && <Spinner>Fetching message details&hellip;</Spinner>}
               {messages && (
                 <>
                   <Meta title={messages[0].payload.subject} />

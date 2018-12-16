@@ -1,64 +1,52 @@
 import React from 'react'
-import styled from 'react-emotion'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 
 import { Star } from './icons'
 
-const Container = styled.main(
-  {
-    display: `flex`,
-    flexDirection: `column`,
-    flex: `1 1 auto`,
-    position: 'relative',
-    overflowY: 'auto',
-    WebkitOverflowScrolling: 'touch',
-  },
-  ({ center, theme }) => ({
-    backgroundColor: theme.bg,
-    color: theme.color,
-    ...(center
-      ? {
-          alignItems: `center`,
-        }
-      : {}),
-  })
-)
-
-const StyledStar = styled(Star)({
-  position: 'fixed',
-})
-
-StyledStar.defaultProps = {
-  height: 180,
-  width: 180,
-}
-
 function Content({ children, center, decoration }) {
+  const starProps = {
+    className: cx('star', 'star--fixed'),
+    width: 180,
+    height: 180,
+  }
+
   return (
-    <Container center={center}>
+    <main className={cx('content', center && 'content--centered')}>
       {decoration && (
         <div css={{ zIndex: 0 }}>
-          <StyledStar css={{ bottom: -45, left: -90 }} fill="#FFDF37" />
-          <StyledStar css={{ bottom: '25vh', right: -90 }} fill="#73FFF7" />
-          <StyledStar
-            css={{ top: '25vh', left: -20 }}
+          <Star
+            style={{ bottom: -45, left: -90 }}
+            fill="#FFDF37"
+            {...starProps}
+          />
+          <Star
+            style={{ bottom: '25vh', right: -90 }}
+            fill="#73FFF7"
+            {...starProps}
+          />
+          <Star
+            style={{ top: '25vh', left: -20 }}
             size={40}
             fill="#3FA9F5"
+            {...starProps}
           />
-          <StyledStar
-            css={{ top: '12.5vh', left: '15vw' }}
+          <Star
+            style={{ top: '12.5vh', left: '15vw' }}
             size={14}
             fill="#663399"
+            {...starProps}
           />
-          <StyledStar
-            css={{ bottom: '12.5vh', left: '35vw' }}
+          <Star
+            style={{ bottom: '12.5vh', left: '35vw' }}
             size={8}
             fill="#663399"
+            {...starProps}
           />
         </div>
       )}
       {children}
-    </Container>
+    </main>
   )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import styled from 'react-emotion'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 
 import Authentication from './authentication'
@@ -8,43 +8,22 @@ import { GatsbyLogo, ThemeToggle } from './icons'
 import Signout from './sign-out'
 import Theme from './theme'
 
-import getZIndex from '../style/z-index'
+const Container = ({ className, ...rest }) => (
+  <header className={cx('header', className)} {...rest}>
+    {rest.children}
+  </header>
+)
 
-const Container = styled.header(({ theme }) => ({
-  flex: `0 0 auto`,
-  display: `flex`,
-  alignItems: `center`,
-  justifyContent: `space-between`,
-  backgroundColor: theme.bg,
-  color: theme.bg,
-  padding: 20,
-  borderBottom: `1px solid ${theme.inverted.link}`,
-  height: 64,
-  zIndex: getZIndex('header'),
-}))
+const StyledLink = ({ className, ...rest }) => (
+  <Link className={cx('header--link', className)} {...rest}>
+    {rest.children}
+  </Link>
+)
 
-const StyledLink = styled(Link)(({ theme }) => ({
-  color: theme.color,
-  display: 'flex',
-  alignItems: 'center',
-  fontSize: 20,
-  textDecorationSkip: 'ink',
-  textDecoration: 'none',
-  ':hover': {
-    color: theme.color,
-    textDecoration: 'underline',
-  },
-}))
-
-const IconButton = styled.button(
-  {
-    background: `none`,
-    border: `none`,
-    cursor: `pointer`,
-  },
-  props => ({
-    color: props.theme.inverted.bg,
-  })
+const IconButton = ({ className, ...rest }) => (
+  <button className={cx('header--button', className)} {...rest}>
+    {rest.children}
+  </button>
 )
 
 const Header = ({ siteTitle }) => (

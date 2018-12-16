@@ -1,0 +1,15 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  position: relative;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: $BG_LIGHT;
+  &--centered {
+    align-items: center;
+  }
+  .dark & {
+    background-color: $BG_DARK;
+  }
+}

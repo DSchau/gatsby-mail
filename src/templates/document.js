@@ -5,7 +5,7 @@ import { graphql } from 'gatsby'
 import BackLink from '../components/back-link'
 import Meta from '../components/meta'
 
-const Content = styled.div(
+const Content = styled('div')(
   {
     margin: '0 auto',
     padding: '0.5rem 1rem',

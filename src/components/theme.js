@@ -63,7 +63,7 @@ class Theme extends Component {
         }}
       >
         <ThemeProvider theme={this.state.theme}>
-          {this.props.children}
+          <span className={this.state.theme.name}>{this.props.children}</span>
         </ThemeProvider>
       </Provider>
     )

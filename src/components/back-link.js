@@ -1,22 +1,10 @@
 import React from 'react'
-import styled from 'react-emotion'
-import { Link as GatsbyLink } from 'gatsby'
+import { Link } from 'gatsby'
 import { MdArrowBack } from 'react-icons/md'
-
-const Link = styled(GatsbyLink)(({ theme }) => ({
-  color: theme.link,
-  cursor: 'pointer',
-  fontSize: 14,
-  textDecoration: 'none',
-  transition: '175ms ease-in-out',
-  ':hover': {
-    textDecoration: 'underline',
-  },
-}))
 
 function BackLink({ children, className, to }) {
   return (
-    <Link className={className} to={to}>
+    <Link className={`link--back ${className}`} to={to}>
       <MdArrowBack css={{ marginRight: '0.5rem' }} />
       {children}
     </Link>

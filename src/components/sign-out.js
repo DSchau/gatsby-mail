@@ -3,7 +3,7 @@ import styled from 'react-emotion'
 import { MdExitToApp } from 'react-icons/md'
 import PropTypes from 'prop-types'
 
-const Button = styled.button(({ theme }) => ({
+const Button = styled('button')(({ theme }) => ({
   backgroundColor: 'transparent',
   border: 'none',
   fontSize: 14,
