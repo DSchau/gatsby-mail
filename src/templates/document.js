@@ -18,6 +18,7 @@ const Content = styled('div')(
     },
   },
   ({ theme }) => ({
+    color: theme.color,
     a: {
       color: theme.linkAccent,
     },

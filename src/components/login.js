@@ -1,50 +1,27 @@
 import React from 'react'
-import styled from 'react-emotion'
+import cx from 'classnames'
 import { FaArrowRight, FaExclamationTriangle } from 'react-icons/fa'
 
 import Authentication from './authentication'
 import Button from './button'
 import LoginLinks from './login-links'
 
-const Container = styled('div')(
-  {
-    display: `flex`,
-    justifyContent: 'center',
-    flex: 1,
-    minHeight: '100%',
-    flexDirection: 'column',
-    padding: '1rem',
-  },
-  ({ theme }) => ({
-    color: theme.color,
-  })
+const Container = ({ className, ...rest }) => (
+  <div className={cx('login', className)} {...rest}>
+    {rest.children}
+  </div>
 )
 
-const Title = styled('h1')({
-  fontSize: 28,
-  fontWeight: 400,
-  textAlign: 'left',
-})
-
-const Subtitle = styled('span')(
-  {
-    display: 'block',
-    fontSize: 40,
-    fontWeight: 700,
-  },
-  ({ theme }) => ({
-    color: theme.name === 'dark' ? '#3FA9F5' : theme.accent,
-  })
+const Title = ({ children, className }) => (
+  <h1 className={cx('login--title', className)}>{children}</h1>
 )
 
-const Message = styled('h4')(
-  {
-    fontSize: 14,
-    margin: '0.5rem 0',
-  },
-  ({ theme }) => ({
-    color: theme.alert,
-  })
+const Subtitle = ({ children, className }) => (
+  <span className={cx('login--title--sub', className)}>{children}</span>
+)
+
+const Message = ({ children, className }) => (
+  <h4 className={cx('login--message', className)}>{children}</h4>
 )
 
 function Login() {

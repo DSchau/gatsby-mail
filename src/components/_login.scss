@@ -1,0 +1,37 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-height: 100%;
+  padding: 1rem;
+  color: $TEXT_COLOR_LIGHT;
+
+  &--title {
+    font-size: 28px;
+    font-weight: 400;
+    text-align: left;
+    &--sub {
+      display: block;
+      color: $ACCENT_LIGHT;
+      font-size: 40px;
+      font-weight: 700;
+      .dark & {
+        color: #3fa9f5;
+      }
+    }
+  }
+
+  &--message {
+    font-size: 14px;
+    color: $ALERT_COLOR_LIGHT;
+
+    .dark & {
+      color: $ALERT_COLOR_DARK;
+    }
+  }
+
+  .dark & {
+    color: $TEXT_COLOR_DARK;
+  }
+}

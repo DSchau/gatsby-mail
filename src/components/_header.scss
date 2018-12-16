@@ -2,7 +2,7 @@
   @include flex-center(space-between);
   flex: 0 0 auto;
   background-color: $BG_LIGHT;
-  border-bottom: 1px solid $BG_DARK;
+  border-bottom: 1px solid $LINK_DARK;
   padding: 20px;
   height: 64px;
   z-index: 2;
@@ -38,6 +38,6 @@
 
   .dark & {
     background-color: $BG_DARK;
-    border-color: $BG_LIGHT;
+    border-color: $LINK_LIGHT;
   }
 }
