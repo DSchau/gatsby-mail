@@ -38,13 +38,17 @@ function Login() {
                 Welcome to
                 <Subtitle>Gatsby Mail</Subtitle>
               </Title>
-              <Button css={{ margin: '1rem 0' }} onClick={login()}>
+              <Button style={{ margin: '1rem 0' }} onClick={login()}>
                 Log in with Google{' '}
-                <FaArrowRight css={{ position: 'relative', top: 4 }} />
+                <FaArrowRight style={{ position: 'relative', top: 4 }} />
               </Button>
               <Message>
                 <FaExclamationTriangle
-                  css={{ position: 'relative', top: 2, marginRight: '0.25rem' }}
+                  style={{
+                    position: 'relative',
+                    top: 2,
+                    marginRight: '0.25rem',
+                  }}
                 />{' '}
                 Don't use this for anything <em>real!</em>
               </Message>

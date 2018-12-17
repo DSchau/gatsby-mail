@@ -35,12 +35,17 @@ const IndexPage = () => (
         }
       }
     `}
-    children={({ loading, data }) => (
+    children={({ loading, data = {}, error }) => (
       <div className="index-page">
         {loading && <Spinner> Loading mail&hellip;</Spinner>}
+        {error && (
+          <Spinner className="spinner__message--error">
+            An error has ocurred.
+          </Spinner>
+        )}
         {data.google && (
           <MessageList
-            css={{ paddingBottom: 24 }}
+            style={{ paddingBottom: 24 }}
             threads={data.google.gmail.queryThreads.threads}
           />
         )}

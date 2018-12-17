@@ -14,7 +14,7 @@ function Content({ children, center, decoration }) {
   return (
     <main className={cx('content', center && 'content--centered')}>
       {decoration && (
-        <div css={{ zIndex: 0 }}>
+        <div style={{ zIndex: 0 }}>
           <Star
             style={{ bottom: -45, left: -90 }}
             fill="#FFDF37"

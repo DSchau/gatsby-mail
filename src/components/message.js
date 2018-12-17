@@ -1,100 +1,16 @@
 import React from 'react'
-import styled, { cx } from 'react-emotion'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 import { MdArrowForward } from 'react-icons/md'
 import format from 'date-fns/format'
 
 import AirMail from './air-mail'
 import decodePayload from '../util/parse-payload'
-import { SYSTEM_FONTS } from '../util/typography'
 
-const Container = styled('div')(({ theme }) => ({
-  backgroundColor: theme.bg,
-  borderBottomColor: theme.cardBorder,
-  borderBottomStyle: `solid`,
-  borderBottomWidth: 1,
-  color: theme.inverted.bg,
-  padding: '0.5rem 0',
-  transition: '175ms cubic-bezier(.17, .67, .83, .67)',
-  ':hover': {
-    backgroundColor: theme.cardBorder,
-  },
-}))
-
-const Content = styled('div')({
-  display: 'flex',
-  position: `relative`,
-})
-
-const Details = styled('div')(
-  {
-    padding: '0.25rem 1rem',
-    overflowX: 'hidden',
-    textOverflow: 'ellipsis',
-  },
-  ({ showAction, theme }) => ({
-    ...(showAction
-      ? {}
-      : {
-          backgroundColor: theme.name === 'dark' ? theme.bgDark : theme.bgLight,
-        }),
-  })
-)
-
-const To = styled('h2')(
-  {
-    margin: 0,
-    padding: 0,
-    fontFamily: SYSTEM_FONTS.join(`,`),
-    fontSize: 14,
-    lineHeight: 1.5,
-    fontWeight: 'normal',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
-  ({ theme }) => ({
-    color: theme.colorCalm,
-  })
-)
-
-const From = styled(To)({}, ({ showAction }) => ({
-  ...(showAction
-    ? {}
-    : {
-        paddingRight: 72,
-      }),
-}))
-
-const Date = styled(To)()
-
-const Subject = styled(To)(
-  {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  ({ showAction, theme }) => ({
-    color: theme.color,
-    ...(showAction ? {} : { paddingRight: 16 }),
-  })
-)
-
-const MessageContent = styled('div')({
-  padding: '0.25rem 1rem',
-  lineHeight: 1.5,
-  margin: '1rem 0',
-})
-
-const Action = styled('div')(
-  {
-    position: `absolute`,
-    top: '0.85rem',
-    right: 8,
-    transform: 'translateY(-50%)',
-  },
-  ({ theme }) => ({
-    color: theme.footerLink,
-  })
+const Title = ({ className, showAction, ...rest }) => (
+  <h2 className={cx('message__title', className)} {...rest}>
+    {rest.children}
+  </h2>
 )
 
 const formatFrom = from => (from || '').split('<').shift()
@@ -102,7 +18,8 @@ const displayMessage = parts =>
   (parts || [])
     .filter(part => part.mimeType === 'text/html')
     .map((part, index) => (
-      <MessageContent
+      <div
+        className="message__detail"
         key={index}
         dangerouslySetInnerHTML={{ __html: decodePayload(part.body) }}
       />
@@ -111,31 +28,39 @@ const displayMessage = parts =>
 function Message({ className, showAction, showTo, stripe, payload }) {
   const { date, from, parts, subject, to } = payload
   return (
-    <Container>
+    <div className="message">
       {stripe && <AirMail />}
-      <Content
-        css={{
-          display: showAction ? 'flex' : 'block',
-        }}
-        className={cx('message', className)}
+      <div
+        className={cx(
+          'message__content',
+          showAction && 'message__content--has-action',
+          className
+        )}
       >
-        <Details showAction={showAction}>
-          <From>{formatFrom(from)}</From>
-          {showTo && to && <To>TO: {to}</To>}
-          <Subject>{subject}</Subject>
-          {!showAction && <Date>{date}</Date>}
-        </Details>
+        <div
+          className={cx(
+            'message__details',
+            showAction && 'message__details--action'
+          )}
+        >
+          <Title>{formatFrom(from)}</Title>
+          {showTo && to && <Title>TO: {to}</Title>}
+          <Title className="message__title--subject">{subject}</Title>
+          {!showAction && (
+            <Title className="message__title--has-action">{date}</Title>
+          )}
+        </div>
         {displayMessage(parts)}
         {showAction && (
-          <Action>
-            <span css={{ fontSize: 12, marginRight: '0.5rem' }}>
+          <div className="message__action">
+            <span style={{ fontSize: 12, marginRight: '0.5rem' }}>
               {format(date, 'MMM DD')}
             </span>
-            <MdArrowForward css={{ verticalAlign: 'sub' }} />
-          </Action>
+            <MdArrowForward style={{ verticalAlign: 'sub' }} />
+          </div>
         )}
-      </Content>
-    </Container>
+      </div>
+    </div>
   )
 }
 

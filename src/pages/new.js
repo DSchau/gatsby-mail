@@ -208,7 +208,7 @@ class NewMessage extends Component {
                       </Label>
                       <div className="new-page__submit">
                         <FloatingButton
-                          css={{ backgroundColor: '#3FA9F5', fontSize: 20 }}
+                          style={{ backgroundColor: '#3FA9F5', fontSize: 20 }}
                           disabled={!user}
                           type="submit"
                         >

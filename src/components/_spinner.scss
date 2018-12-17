@@ -49,6 +49,15 @@ $SPINNER_LOADER_SIZE: 20px;
     }
   }
 
+  &__message {
+    &--error {
+      color: $ALERT_COLOR_LIGHT;
+      .dark & {
+        color: $ALERT_COLOR_DARK;
+      }
+    }
+  }
+
   .dark & {
     color: $TEXT_COLOR_DARK;
   }

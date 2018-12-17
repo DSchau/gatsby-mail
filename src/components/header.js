@@ -33,7 +33,7 @@ const Header = ({ siteTitle }) => (
         <h1 style={{ margin: 0 }}>
           <Link to="/">
             <GatsbyLogo
-              css={{ marginRight: '0.5rem', position: 'relative', top: -2 }}
+              style={{ marginRight: '0.5rem', position: 'relative', top: -2 }}
             />
             {siteTitle
               .split('Gatsby')
@@ -55,7 +55,7 @@ const Header = ({ siteTitle }) => (
               <>
                 {authenticated ? (
                   <Signout
-                    css={{ color: theme.link, position: 'relative', top: 3 }}
+                    style={{ color: theme.link, position: 'relative', top: 3 }}
                     onClick={logout()}
                     title="Sign out"
                   />

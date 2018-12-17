@@ -1,6 +1,8 @@
 $HEADER_FONT_FAMILY: Futura PT, -apple-system, BlinkMacSystemFont, Segoe UI,
   Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
   Arial, sans-serif;
+$SYSTEM_FONT_FAMILY: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, Arial, sans-serif;
 
 $BASE_COLOR: rebeccapurple;
 
@@ -9,15 +11,19 @@ $BG_LIGHT: #fafafa;
 $BG_LIGHT_DARK: #442266;
 $LINK_LIGHT: $BASE_COLOR;
 $ACCENT_LIGHT: $BASE_COLOR;
+$CARD_BORDER_LIGHT: #f5f3f7;
 $BUTTON_LIGHT: #2fcc49;
 $FOOTER_LINK_LIGHT: $BASE_COLOR;
 $TEXT_COLOR_LIGHT: #444;
+$CALM_LIGHT: #828282;
 
 $ALERT_COLOR_DARK: #ec1818;
 $BG_DARK: #221133;
 $BG_DARK_DARK: #442266;
 $ACCENT_DARK: $BASE_COLOR;
 $BUTTON_DARK: #2fcc49;
+$CARD_BORDER_DARK: #33194c;
 $LINK_DARK: #e0d6eb;
 $FOOTER_LINK_DARK: #e0d6eb;
 $TEXT_COLOR_DARK: #ddd;
+$CALM_DARK: #b0a5bd;

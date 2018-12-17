@@ -26,7 +26,7 @@ function MessageList({ className, threads }) {
           <Item key={thread.id}>
             <Link
               to={`/threads/${thread.id}`}
-              css={{ textDecoration: `none` }}
+              style={{ textDecoration: `none` }}
               state={{
                 id: thread.id,
               }}

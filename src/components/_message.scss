@@ -1,0 +1,76 @@
+.message {
+  border-bottom: 1px solid $CARD_BORDER_LIGHT;
+  padding: 0.5rem 0;
+  transition: 175ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  background-color: $BG_LIGHT;
+  color: $BG_DARK;
+
+  &__content {
+    display: block;
+    position: relative;
+    &--has-action {
+      display: flex;
+    }
+  }
+
+  &__details {
+    padding: 0.25rem 1rem;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    &--action {
+      background-color: $BG_LIGHT;
+      .dark & {
+        background-color: $BG_DARK;
+      }
+    }
+  }
+
+  &__title {
+    margin: 0;
+    padding: 0;
+    font-family: $SYSTEM_FONT_FAMILY;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $CALM_LIGHT;
+
+    &--has-action {
+      padding-right: 72px;
+    }
+
+    &--subject {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .dark & {
+      color: $CALM_DARK;
+    }
+  }
+
+  &__action {
+    position: absolute;
+    top: 0.85rem;
+    right: 8px;
+    color: $FOOTER_LINK_LIGHT;
+    transform: translateY(-50%);
+    .dark & {
+      color: $FOOTER_LINK_DARK;
+    }
+  }
+
+  &__detail {
+    padding: 0.25rem 1rem;
+    line-height: 1.5;
+    margin: 1rem 0;
+  }
+
+  .dark & {
+    background-color: $BG_DARK;
+    border-color: $CARD_BORDER_DARK;
+    color: $BG_LIGHT;
+  }
+}
