@@ -1,30 +1,25 @@
 import React from 'react'
-import { graphql, Link, StaticQuery } from 'gatsby'
-import styled from 'react-emotion'
+import { graphql, Link as GatsbyLink, StaticQuery } from 'gatsby'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 
-const Container = styled('div')()
+const List = ({ className, ...rest }) => (
+  <ul className={cx('link-container--list', className)} {...rest}>
+    {rest.children}
+  </ul>
+)
 
-const List = styled('ul')({
-  margin: 0,
-  padding: 0,
-})
+const ListItem = ({ className, ...rest }) => (
+  <li className={cx('link-container--list-item', className)} {...rest}>
+    {rest.children}
+  </li>
+)
 
-const ListItem = styled('li')({
-  display: 'block',
-  fontSize: 14,
-  listStyleType: 'none',
-  margin: '0.75rem 0',
-})
-
-const StyledLink = styled(Link)(({ theme }) => ({
-  color: theme.link,
-  textDecoration: 'none',
-  ':hover': {
-    color: theme.link,
-    textDecoration: 'underline',
-  },
-}))
+const Link = ({ className, ...rest }) => (
+  <GatsbyLink className={cx('link-container--link', className)} {...rest}>
+    {rest.children}
+  </GatsbyLink>
+)
 
 function LoginLinks({ className }) {
   return (
@@ -46,17 +41,15 @@ function LoginLinks({ className }) {
         }
       `}
       render={data => (
-        <Container className={className}>
+        <div className={className}>
           <List>
             {data.markdown.edges.map(({ node }) => (
               <ListItem key={node.fields.slug}>
-                <StyledLink to={node.fields.slug}>
-                  {node.frontmatter.title}
-                </StyledLink>
+                <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
               </ListItem>
             ))}
           </List>
-        </Container>
+        </div>
       )}
     />
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link as GatsbyLink } from 'gatsby'
 import cx from 'classnames'
 import PropTypes from 'prop-types'
 
@@ -14,10 +14,10 @@ const Container = ({ className, ...rest }) => (
   </header>
 )
 
-const StyledLink = ({ className, ...rest }) => (
-  <Link className={cx('header--link', className)} {...rest}>
+const Link = ({ className, ...rest }) => (
+  <GatsbyLink className={cx('header--link', className)} {...rest}>
     {rest.children}
-  </Link>
+  </GatsbyLink>
 )
 
 const IconButton = ({ className, ...rest }) => (
@@ -31,7 +31,7 @@ const Header = ({ siteTitle }) => (
     {({ toggleTheme, theme }) => (
       <Container>
         <h1 style={{ margin: 0 }}>
-          <StyledLink to="/">
+          <Link to="/">
             <GatsbyLogo
               css={{ marginRight: '0.5rem', position: 'relative', top: -2 }}
             />
@@ -39,7 +39,7 @@ const Header = ({ siteTitle }) => (
               .split('Gatsby')
               .pop()
               .trim()}
-          </StyledLink>
+          </Link>
         </h1>
         <div>
           <IconButton

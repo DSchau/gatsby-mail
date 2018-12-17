@@ -3,3 +3,14 @@
   align-items: center;
   justify-content: $justifyContent;
 }
+
+@mixin resetBox() {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin bottomRight() {
+  position: fixed;
+  bottom: 24px;
+  right: 16px;
+}

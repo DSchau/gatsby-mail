@@ -1,25 +1,12 @@
 import React from 'react'
 import { gql } from 'apollo-boost'
 import { Query } from 'react-apollo'
-import styled from 'react-emotion'
 import { MdAdd } from 'react-icons/md'
 import { Link as GatsbyLink } from 'gatsby'
 
 import FloatingButton from '../components/floating-button'
 import MessageList from '../components/message-list'
 import Spinner from '../components/spinner'
-
-import getZIndex from '../style/z-index'
-
-const Container = styled('div')({
-  zIndex: getZIndex('button'),
-})
-
-const BottomRight = styled('div')({
-  position: 'fixed',
-  bottom: 24,
-  right: 16,
-})
 
 const IndexPage = () => (
   <Query
@@ -49,7 +36,7 @@ const IndexPage = () => (
       }
     `}
     children={({ loading, data }) => (
-      <Container>
+      <div className="index-page">
         {loading && <Spinner> Loading mail&hellip;</Spinner>}
         {data.google && (
           <MessageList
@@ -57,12 +44,12 @@ const IndexPage = () => (
             threads={data.google.gmail.queryThreads.threads}
           />
         )}
-        <BottomRight>
+        <div className="index-page--new-section">
           <FloatingButton as={GatsbyLink} to="/new">
             <MdAdd />
           </FloatingButton>
-        </BottomRight>
-      </Container>
+        </div>
+      </div>
     )}
   />
 )

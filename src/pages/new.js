@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'react-emotion'
+import cx from 'classnames'
 import { gql } from 'apollo-boost'
 import { Mutation } from 'react-apollo'
 import { MdSend } from 'react-icons/md'
@@ -10,94 +10,32 @@ import Textarea from '../components/textarea'
 import Toolbar from '../components/toolbar'
 import User from '../components/user'
 
-import getZIndex from '../style/z-index'
 import delay from '../util/delay'
 
-const styles = {
-  input: {
-    display: 'block',
-    border: 'none',
-    borderBottom: `1px solid #eee`,
-    padding: '0.5rem 0.25rem',
-    margin: '0.125rem 0',
-    width: '100%',
-  },
+const Label = ({ className, ...rest }) => (
+  <label className={cx('new-page__label', className)} {...rest}>
+    {rest.children}
+  </label>
+)
+
+const Input = class extends Component {
+  static defaultProps = {
+    type: 'text',
+  }
+
+  render() {
+    const { className, innerRef, ...rest } = this.props
+    return (
+      <input
+        className={cx('new-page__input', className)}
+        ref={innerRef}
+        {...rest}
+      >
+        {rest.children}
+      </input>
+    )
+  }
 }
-
-const Container = styled('div')(
-  {
-    flex: 1,
-    height: '100%',
-    width: '100%',
-    zIndex: getZIndex('button'),
-  },
-  ({ theme }) => ({
-    backgroundColor: theme.bg,
-  })
-)
-
-const Card = styled('form')({
-  width: `100%`,
-  margin: `0 auto`,
-  '@media only screen and (min-width: 768px)': {
-    width: '50%',
-  },
-})
-
-const Alert = styled('div')(
-  {
-    color: 'white',
-    backgroundColor: '#00A388',
-    padding: '0.5rem 1rem',
-    margin: '1rem',
-    textAlign: 'center',
-  },
-  ({ type }) => ({
-    ...(type === 'error'
-      ? {
-          backgroundColor: '#C33325',
-        }
-      : {}),
-    ...(type === 'loading'
-      ? {
-          backgroundColor: '#526C70',
-        }
-      : {}),
-  })
-)
-
-const Text = styled('p')({
-  margin: 0,
-  lineHeight: 1.5,
-})
-
-const Content = styled('div')({
-  padding: '1rem',
-  width: '100%',
-})
-
-const Label = styled('label')(
-  {
-    display: 'block',
-    fontWeight: 'bold',
-    margin: '0.5rem 0',
-  },
-  ({ theme }) => ({
-    color: theme.color,
-  })
-)
-
-const Input = styled('input')(styles.input)
-
-Input.defaultProps = {
-  type: 'text',
-}
-
-const BottomRight = styled('div')({
-  position: 'fixed',
-  bottom: 24,
-  right: 16,
-})
 
 class NewMessage extends Component {
   state = {
@@ -190,7 +128,7 @@ class NewMessage extends Component {
   render() {
     const { body, subject, to } = this.state
     return (
-      <Container>
+      <div className="new-page">
         <Meta title="Send a message" />
         <Toolbar />
         <User>
@@ -228,13 +166,16 @@ class NewMessage extends Component {
                   this.state.message
                 )
                 return (
-                  <Card onSubmit={this.handleSubmit(sendMessage, user)}>
+                  <form
+                    className="new-page__card"
+                    onSubmit={this.handleSubmit(sendMessage, user)}
+                  >
                     {message && (
-                      <Alert type={this.state.status}>
-                        <Text>{message}</Text>
-                      </Alert>
+                      <div className="new-page__alert" type={this.state.status}>
+                        <p className="new-page__text">{message}</p>
+                      </div>
                     )}
-                    <Content>
+                    <div>
                       <Label htmlFor="to">
                         To
                         <Input
@@ -257,15 +198,15 @@ class NewMessage extends Component {
                       <Label htmlFor="body">
                         Message
                         <Textarea
+                          className="new-page__input"
                           id="body"
-                          css={styles.input}
                           rows={5}
                           value={body}
                           onChange={this.handleChange}
                           required={true}
                         />
                       </Label>
-                      <BottomRight>
+                      <div className="new-page__submit">
                         <FloatingButton
                           css={{ backgroundColor: '#3FA9F5', fontSize: 20 }}
                           disabled={!user}
@@ -273,15 +214,15 @@ class NewMessage extends Component {
                         >
                           <MdSend />
                         </FloatingButton>
-                      </BottomRight>
-                    </Content>
-                  </Card>
+                      </div>
+                    </div>
+                  </form>
                 )
               }}
             />
           )}
         </User>
-      </Container>
+      </div>
     )
   }
 }

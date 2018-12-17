@@ -1,0 +1,25 @@
+.document {
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+  color: $TEXT_COLOR_LIGHT;
+  p {
+    line-height: 1.4;
+  }
+  a {
+    color: $ACCENT_LIGHT;
+    .dark & {
+      color: $LINK_DARK;
+    }
+  }
+
+  .dark & {
+    color: $TEXT_COLOR_DARK;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .document {
+    max-width: 60%;
+  }
+}

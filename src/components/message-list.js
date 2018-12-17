@@ -1,22 +1,21 @@
 import React from 'react'
-import styled from 'react-emotion'
 import { Link } from 'gatsby'
+import cx from 'classnames'
 import PropTypes from 'prop-types'
 
 import Message from './message'
 
-const Container = styled('ul')({
-  display: 'flex',
-  flexDirection: 'column',
-  margin: 0,
-  padding: 0,
-})
+const Container = ({ className, ...rest }) => (
+  <ul className={cx('message-list--container', className)} {...rest}>
+    {rest.children}
+  </ul>
+)
 
-const Item = styled('li')({
-  listStyleType: 'none',
-  margin: 0,
-  padding: 0,
-})
+const Item = ({ className, ...rest }) => (
+  <li className={cx('message-list--message', className)} {...rest}>
+    {rest.children}
+  </li>
+)
 
 function MessageList({ className, threads }) {
   return (

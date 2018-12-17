@@ -1,29 +1,22 @@
 import React from 'react'
-import styled from 'react-emotion'
+import cx from 'classnames'
 import { MdExitToApp } from 'react-icons/md'
 import PropTypes from 'prop-types'
 
-const Button = styled('button')(({ theme }) => ({
-  backgroundColor: 'transparent',
-  border: 'none',
-  fontSize: 14,
-  textDecoration: 'none',
-  transition: '175ms ease-in-out',
-  ':hover': {
-    textDecoration: 'underline',
-  },
-}))
+import Button from './button'
 
-const Exit = styled(MdExitToApp)(({ theme }) => ({
-  color: theme.footerLink,
-}))
+const SignoutButton = ({ className, ...rest }) => (
+  <Button className={cx('sign-out', className)} {...rest}>
+    {rest.children}
+  </Button>
+)
 
-function Signout({ children, className, onClick }) {
+function Signout({ children, className, onClick, ...rest }) {
   return (
-    <Button className={className} onClick={onClick}>
+    <SignoutButton className={className} onClick={onClick} {...rest}>
       {children}
-      <Exit size={24} />
-    </Button>
+      <MdExitToApp className="exit" size={24} />
+    </SignoutButton>
   )
 }
 

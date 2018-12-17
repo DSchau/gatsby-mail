@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
-import styled from 'react-emotion'
 
 import Authentication from '../components/authentication'
 import Login from '../components/login'
@@ -14,13 +13,6 @@ import Theme from '../components/theme'
 import '../style/main.scss'
 import '../style/global'
 import 'normalize.css'
-
-const Container = styled('div')({
-  display: 'flex',
-  flexDirection: 'column',
-  position: 'relative',
-  height: `100%`,
-})
 
 class Layout extends Component {
   render() {
@@ -46,7 +38,7 @@ class Layout extends Component {
             <Theme.Provider>
               <Authentication.Provider>
                 <Meta meta={meta} title={title} />
-                <Container>
+                <div className="index-layout">
                   <Header siteTitle={data.site.siteMetadata.title} />
                   {useAuthentication ? (
                     <Authentication.Consumer>
@@ -68,7 +60,7 @@ class Layout extends Component {
                     <Content decoration={true}>{children}</Content>
                   )}
                   <Footer stripes={location.pathname === `/`} />
-                </Container>
+                </div>
               </Authentication.Provider>
             </Theme.Provider>
           )

@@ -1,0 +1,22 @@
+.link-container {
+  &--list {
+    margin: 0;
+    padding: 0;
+  }
+  &--list-item {
+    display: block;
+    font-size: 14px;
+    list-style-type: none;
+    margin: 0.75rem 0;
+  }
+  &--link {
+    color: $LINK_LIGHT;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+    .dark & {
+      color: $LINK_DARK;
+    }
+  }
+}

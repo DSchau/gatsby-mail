@@ -1,0 +1,11 @@
+.message-list {
+  &--container {
+    display: flex;
+    flex-direction: column;
+    @include resetBox();
+  }
+  &--message {
+    list-style-type: none;
+    @include resetBox();
+  }
+}

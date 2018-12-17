@@ -1,0 +1,8 @@
+.index-page {
+  z-index: 3;
+  &--new-section {
+    position: fixed;
+    bottom: 24px;
+    right: 16px;
+  }
+}

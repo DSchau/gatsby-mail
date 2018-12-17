@@ -1,0 +1,17 @@
+.sign-out {
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 175ms ease-in-out;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.exit {
+  color: $LINK_LIGHT;
+  .dark {
+    color: $LINK_DARK;
+  }
+}

@@ -1,0 +1,75 @@
+.new-page {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+  background-color: $BG_LIGHT;
+
+  &__card {
+    width: 100%;
+    margin: 0 auto;
+
+    @media only screen and (min-width: 768px) {
+      width: 50%;
+    }
+  }
+
+  &__alert {
+    color: white;
+    background-color: #00a388;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    text-align: center;
+    &--error {
+      background-color: #c33325;
+    }
+    &--loading {
+      background-color: #526c70;
+    }
+  }
+
+  &__text {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  &__content {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  &__label {
+    display: block;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    color: $TEXT_COLOR_LIGHT;
+
+    .dark & {
+      color: $TEXT_COLOR_DARK;
+    }
+  }
+
+  &__input {
+    display: block;
+    border: none;
+    border: 1px solid $ACCENT_DARK;
+    padding: 0.5rem 0.25rem;
+    margin: 0.125rem 0;
+    width: 100%;
+
+    color: $TEXT_COLOR_LIGHT;
+
+    .dark & {
+      background-color: $BG_LIGHT_DARK;
+      color: $TEXT_COLOR_DARK;
+    }
+  }
+
+  &__submit {
+    @include bottomRight();
+  }
+
+  .dark & {
+    background-color: $BG_DARK;
+  }
+}
