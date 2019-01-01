@@ -39,7 +39,7 @@ exports.createPages = async function createPages({
         }
       }
     }
-  `).then(result => result.data)
+  `).then(res => res.data)
 
   const documentTemplate = path.resolve('src/templates/document.js')
 
