@@ -27,21 +27,19 @@ function Threads({ location }) {
             google {
               gmail {
                 thread(id: $threadId) {
-                  expanded {
-                    messages {
-                      id
-                      payload {
-                        parts {
-                          mimeType
-                          body {
-                            data
-                          }
+                  messages {
+                    id
+                    payload {
+                      parts {
+                        mimeType
+                        body {
+                          data
                         }
-                        date
-                        subject
-                        from
-                        to
                       }
+                      date
+                      subject
+                      from
+                      to
                     }
                   }
                 }
@@ -52,9 +50,7 @@ function Threads({ location }) {
         variables={{ threadId: id }}
         children={({ loading, data }) => {
           const messages =
-            data && data.google
-              ? data.google.gmail.thread.expanded.messages
-              : null
+            data && data.google ? data.google.gmail.thread.messages : null
           return (
             <>
               {loading && (
