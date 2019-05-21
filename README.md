@@ -19,4 +19,5 @@ A proof of concept application that demonstrates a few concepts, namely:
 - `yarn` or `npm install`
 - Request a [Github token](https://github.com/settings/tokens) and give `repo` full access to the token
 - `cat .env.sample > .env.development` then paste in your access token from gitub
+- From the `.env.development` file, replace the GATSBY_OG_APP_ID with a token from a [OneGraph account which you must create](https://www.onegraph.com/)
 - `yarn develop` or `npm run develop`
