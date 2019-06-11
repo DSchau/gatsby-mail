@@ -23,7 +23,7 @@ const BottomRight = styled.div({
 
 const IndexPage = () => (
   <Query
-    pollInterval={5000}
+    pollInterval={1000}
     query={gql`
       query GetMessages {
         google {
