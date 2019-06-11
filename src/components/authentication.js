@@ -6,6 +6,11 @@ const { Consumer, Provider } = React.createContext(`authentication`)
 
 const AUTH_SERVICE = 'gmail'
 
+/*
+ * Remember: auth.current.isLoggedIn(AUTH_SERVICE)
+ * auth.current.login(AUTH_SERVICE)
+ * auth.current.logout(AUTH_SERVICE)
+ */
 function Authentication({ children }) {
   return (
     <Provider
