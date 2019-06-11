@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'react-emotion'
 import { FaGithub } from 'react-icons/fa'
 import { MdStar } from 'react-icons/md'
-import { graphql, StaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import PropTypes from 'prop-types'
 
 import Airmail from './air-mail'
@@ -51,58 +51,50 @@ Link.defaultProps = {
 }
 
 function Footer({ stripes }) {
-  return (
-    <StaticQuery
-      query={graphql`
-        query FooterQuery {
-          github {
-            repository(owner: "dschau", name: "gatsby-mail") {
-              stargazers {
-                totalCount
-              }
-            }
-          }
-          site {
-            siteMetadata {
-              repository {
-                url
-              }
-            }
+  const data = useStaticQuery(graphql`
+    query FooterQuery {
+      # TODO: pull from Github at build time
+      site {
+        siteMetadata {
+          repository {
+            url
           }
         }
-      `}
-      render={data => (
-        <Container>
-          {stripes && <Airmail />}
-          <Contents>
-            <List>
-              <ListItem css={{ marginLeft: 0 }}>
-                <Link href={data.site.siteMetadata.repository.url}>
-                  <FaGithub
-                    size={16}
-                    css={{
-                      marginRight: '0.5rem',
-                      verticalAlign: 'sub',
-                    }}
-                  />
-                  <span>Source on Github</span>
-                </Link>
-              </ListItem>
-              <ListItem>
-                <Link
-                  href={`${data.site.siteMetadata.repository.url}/stargazers`}
-                >
-                  <strong css={{ fontWeight: 'normal', marginRight: 2 }}>
-                    {data.github.repository.stargazers.totalCount}
-                  </strong>
-                  <MdStar css={{ verticalAlign: 'sub' }} size={16} />
-                </Link>
-              </ListItem>
-            </List>
-          </Contents>
-        </Container>
-      )}
-    />
+      }
+    }
+  `)
+  return (
+    <Container>
+      {stripes && <Airmail />}
+      <Contents>
+        <List>
+          <ListItem css={{ marginLeft: 0 }}>
+            <Link href={data.site.siteMetadata.repository.url}>
+              <FaGithub
+                size={16}
+                css={{
+                  marginRight: '0.5rem',
+                  verticalAlign: 'sub',
+                }}
+              />
+              <span>Source on Github</span>
+            </Link>
+          </ListItem>
+          {data.github && (
+            <ListItem>
+              <Link
+                href={`${data.site.siteMetadata.repository.url}/stargazers`}
+              >
+                <strong css={{ fontWeight: 'normal', marginRight: 2 }}>
+                  {data.github.repository.stargazers.totalCount}
+                </strong>
+                <MdStar css={{ verticalAlign: 'sub' }} size={16} />
+              </Link>
+            </ListItem>
+          )}
+        </List>
+      </Contents>
+    </Container>
   )
 }
 
