@@ -61,7 +61,7 @@ function Login() {
                 Welcome to
                 <Subtitle>Gatsby Mail</Subtitle>
               </Title>
-              <Button css={{ margin: '1rem 0' }} onClick={login()}>
+              <Button css={{ margin: '1rem 0' }} onClick={login}>
                 Log in with Google{' '}
                 <FaArrowRight css={{ position: 'relative', top: 4 }} />
               </Button>

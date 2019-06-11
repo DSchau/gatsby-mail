@@ -7,7 +7,16 @@ const { Consumer, Provider } = React.createContext(`authentication`)
 const AUTH_SERVICE = 'gmail'
 
 function Authentication({ children }) {
-  return children
+  return (
+    <Provider
+      value={{
+        authenticated: false,
+        // TODO: add login, logout, authenticated
+      }}
+    >
+      {children}
+    </Provider>
+  )
 }
 
 Authentication.Provider = Authentication

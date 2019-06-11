@@ -77,7 +77,7 @@ const Header = ({ siteTitle }) => (
                 {authenticated ? (
                   <Signout
                     css={{ color: theme.link, position: 'relative', top: 3 }}
-                    onClick={logout()}
+                    onClick={logout}
                     title="Sign out"
                   />
                 ) : null}
